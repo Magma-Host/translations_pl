@@ -10,7 +10,8 @@
             "no_account": "Don't have an account?",
             "create_account": "Create account",
             "discord": "Discord",
-            "or_continue": "Or continue with"
+            "or_continue": "Or continue with",
+            "sso": "Single Sign-On"
         },
         "register": {
             "title": "Create an account",
@@ -76,7 +77,30 @@
         "logout": {},
         "loginSuccess": "Login successful",
         "ssoLoggingIn": "Logging in via SSO...",
-        "ssoPleaseWait": "Please wait while we log you in..."
+        "ssoPleaseWait": "Please wait while we log you in...",
+        "discordLoggingIn": "Logging in via Discord...",
+        "discordLinking": {
+            "title": "Link your Discord account",
+            "subtitle": "Enter your FeatherPanel credentials to link your Discord account",
+            "submit": "Link Account",
+            "success": "Discord account linked successfully! Redirecting...",
+            "cancel": "Cancel"
+        }
+    },
+    "public_portal": {
+        "label": "Public Portal",
+        "description": "Public service and documentation portal.",
+        "not_available": "N/A",
+        "servers_count": "{count} Servers",
+        "badges": {
+            "public": "Public",
+            "live": "Live",
+            "docs": "Docs"
+        },
+        "nav": {
+            "status": "Status",
+            "knowledgebase": "Knowledgebase"
+        }
     },
     "errors": {
         "404": {
@@ -117,6 +141,9 @@
         "refresh": "Refresh",
         "disable": "Disable",
         "no_results": "No results found",
+        "total": "Total",
+        "status": "Status",
+        "deleting": "Deleting...",
         "enable": "Enable",
         "copiedToClipboard": "Copied to clipboard",
         "copied_to_clipboard": "Copied to clipboard",
@@ -137,6 +164,8 @@
         "create": "Create",
         "view": "View",
         "delete": "Delete",
+        "mb": "MB",
+        "gb": "GB",
         "remove": "Remove",
         "next": "Next",
         "previous": "Previous",
@@ -144,6 +173,9 @@
         "select_an_option": "Select an option",
         "edit": "Edit",
         "close": "Close",
+        "waitingData": "Waiting for data...",
+        "events": "events",
+        "users": "users",
         "confirm": "Confirm",
         "back": "Back",
         "search": "Search",
@@ -180,7 +212,12 @@
             "showing": "Showing {from} - {to} of {total} results",
             "page": "Page {current} of {total}"
         },
-        "primary": "Primary"
+        "primary": "Primary",
+        "active": "Active",
+        "inactive": "Inactive",
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "save_changes": "Save Changes"
     },
     "branding": {
         "running_on": "Running on {name} {version}",
@@ -238,6 +275,18 @@
             "no_servers": "No servers found",
             "create_first": "Create your first server to get started"
         },
+        "resources": {
+            "title": "Resources",
+            "view_all": "View All",
+            "filter_all": "All",
+            "filter_servers": "Game Servers",
+            "filter_vms": "Virtual Machines",
+            "no_resources": "No resources available",
+            "no_servers": "No game servers available",
+            "no_vms": "No virtual machines available",
+            "create_first": "Create your first resource to get started",
+            "loading": "Loading resources..."
+        },
         "announcements": {},
         "tickets": {
             "title": "Recent Support Tickets",
@@ -251,7 +300,6 @@
             "view_all": "View All",
             "no_activity": "No recent activity"
         },
-        "resources": {},
         "knowledgebase": {
             "title": "Knowledge Base",
             "view_all": "View All",
@@ -304,6 +352,9 @@
         "noChanges": "No changes to save",
         "unexpectedError": "An unexpected error occurred",
         "avatarUploadFailed": "Failed to upload avatar",
+        "analytics": "Analytics",
+        "analyticsDescription": "Allow loading of external analytics scripts. Disable for privacy or EU compliance; the page will refresh after changing.",
+        "analyticsEnabled": "Allow analytics and external scripts",
         "securitySettings": "Security Settings",
         "securitySettingsDescription": "Manage your account security and authentication methods",
         "sessionManagement": "Session Management",
@@ -457,6 +508,8 @@
         "folderDescription": "Description (Optional)",
         "folderDescriptionPlaceholder": "Describe this folder...",
         "allServers": "All Servers",
+        "myServers": "My Servers",
+        "allServersAdmin": "All Servers",
         "byFolder": "By Folder",
         "unassigned": "Unassigned",
         "node": "Node",
@@ -488,6 +541,12 @@
             "install_failed": "Install Failed",
             "suspended": "Suspended",
             "restoring_backup": "Restoring Backup"
+        },
+        "suspended_banner": {
+            "title": "Server Suspended",
+            "message": "This server has been suspended and is not accessible. Please contact support for more information.",
+            "contact_support": "Contact Support",
+            "back_to_dashboard": "Back to Dashboard"
         },
         "subuser": "Subuser",
         "noDescription": "No description",
@@ -524,6 +583,19 @@
             "showing": "Showing {from} to {to} of {total} servers",
             "page": "Page {current} of {total}"
         },
+        "bulk": {
+            "title": "Bulk power actions",
+            "selectedCount": "{count} servers selected",
+            "noSelection": "No servers selected",
+            "selectAllPage": "Select all on this page",
+            "clearSelection": "Clear selection",
+            "start": "Start selected",
+            "stop": "Stop selected",
+            "restart": "Restart selected",
+            "success": "Power action sent to {count} servers.",
+            "partialSuccess": "Power action sent, but some servers failed.",
+            "error": "Failed to send power actions. Please try again."
+        },
         "console": {
             "loading": "Loading server...",
             "noConsolePermissionSend": "You do not have permission to send commands.",
@@ -536,6 +608,7 @@
             },
             "kill": "Kill",
             "uuid": "UUID",
+            "upload_logs": "Upload Logs",
             "info_cards": {
                 "address": "Server Address",
                 "uptime": "Server Uptime",
@@ -554,6 +627,14 @@
                 "network": "Network",
                 "no_data": "No data",
                 "cpu_load": "CPU Load"
+            },
+            "logs": {
+                "uploading": "Uploading server logs to mclo.gs...",
+                "upload_success": "Logs uploaded successfully",
+                "upload_failed": "Failed to upload logs",
+                "uploaded_title": "Server logs uploaded",
+                "uploaded_description": "Share this mclo.gs URL with support or anyone helping you debug.",
+                "url_copied": "Log URL copied to clipboard"
             },
             "terminal": {
                 "title": "Console",
@@ -700,6 +781,45 @@
         "serverId": "ID",
         "attachFiles": "Attach Files"
     },
+    "vms": {
+        "title": "Virtual Machines",
+        "description": "Manage your virtual machines and infrastructure",
+        "searchPlaceholder": "Search virtual machines...",
+        "refresh": "Refresh",
+        "runningOnly": "Running only",
+        "sort": {
+            "name": "Name",
+            "status": "Status",
+            "dateCreated": "Recently Created",
+            "lastUpdated": "Recently Updated"
+        },
+        "layout": {
+            "grid": "Grid",
+            "list": "List"
+        },
+        "pagination": {
+            "showing": "Showing {from} to {to} of {total} VMs",
+            "page": "Page {current} of {total}",
+            "previous": "Previous",
+            "next": "Next"
+        },
+        "loading": "Loading virtual machines...",
+        "errorTitle": "Error Loading VMs",
+        "errorLoading": "Failed to load virtual machines. Please try again.",
+        "retry": "Try Again",
+        "noVmsFound": "No VMs found matching your search",
+        "adjustFilters": "Try adjusting your search query",
+        "noVms": "No virtual machines available",
+        "getStarted": "You do not have any VM instances yet",
+        "status": {
+            "running": "Running",
+            "stopped": "Stopped",
+            "offline": "Offline",
+            "paused": "Paused",
+            "suspended": "Suspended",
+            "unknown": "Unknown"
+        }
+    },
     "appearance": {
         "language": "Language",
         "accentColor": "Accent Color",
@@ -713,6 +833,19 @@
             "title": "Background Settings",
             "customize": "Customize background",
             "change": "Change Background",
+            "aurora": "Aurora",
+            "auroraDescription": "Animated backgrounds that match your theme colors",
+            "variants": {
+                "aurora": "Aurora",
+                "beams": "Beams",
+                "colorBends": "Color Bends",
+                "darkVeil": "Dark Veil",
+                "floatingLines": "Floating Lines",
+                "silk": "Silk"
+            },
+            "themeGradient": "Theme gradient",
+            "themeGradientDescription": "Subtle gradient using your main accent color",
+            "custom": "Custom",
             "gradients": "Gradients",
             "solidPattern": "Solid/Pattern",
             "customImage": "Custom Image",
@@ -732,6 +865,15 @@
                 "forestMist": "Forest Mist",
                 "roseGarden": "Rose Garden",
                 "goldenHour": "Golden Hour"
+            },
+            "backdropBlur": "Backdrop blur",
+            "backdropDarken": "Backdrop darken",
+            "off": "Off",
+            "imageFit": {
+                "title": "Image fit",
+                "cover": "Cover",
+                "contain": "Contain",
+                "fill": "Fill"
             }
         },
         "colors": {
@@ -742,7 +884,21 @@
             "orange": "Orange",
             "pink": "Pink",
             "teal": "Teal",
-            "yellow": "Yellow"
+            "yellow": "Yellow",
+            "white": "White",
+            "violet": "Violet",
+            "cyan": "Cyan",
+            "lime": "Lime",
+            "amber": "Amber",
+            "rose": "Rose",
+            "slate": "Slate"
+        },
+        "motion": {
+            "title": "Animations",
+            "description": "Control transitions and animations across the panel. Use Reduced for shorter effects, or Off for no motion.",
+            "full": "Full",
+            "reduced": "Reduced",
+            "none": "Off"
         },
         "quick_links": {}
     },
@@ -755,20 +911,30 @@
             "roles": "Roles",
             "notifications": "Notifications",
             "servers": "Servers",
+            "virtualServersVds": "Virtual Servers (VDS)",
             "locations_and_nodes": "Locations & Nodes",
             "locations": "Locations",
             "nodes": "Nodes",
+            "vdsNodes": "Nodes (VDS)",
+            "vmPlans": "VM Plans",
+            "vmInstances": "VM Instances",
             "nodeDatabases": "Node Databases",
             "nodeStatus": "Node Status",
             "subdomains": "Subdomains",
             "realms": "Realms (Nests)",
             "spells": "Spells (Eggs)",
+            "refresh": "Refresh",
+            "console": "Console",
+            "network": "Networking",
+            "overview": "Overview",
+            "activities": "Activities",
+            "settings": "Settings",
             "zeroTrust": "ZeroTrust Security",
             "images": "Images",
             "mailTemplates": "Mail Templates",
             "translations": "Translations",
             "aiAgent": "AI Agent",
-            "settings": "Settings",
+            "oidcProviders": "OIDC / SSO Providers",
             "rateLimits": "Rate Limits",
             "databaseManagement": "Database Management",
             "pterodactylImporter": "Pterodactyl Importer",
@@ -783,8 +949,6 @@
             "ticketCategories": "Ticket Categories",
             "ticketPriorities": "Ticket Priorities",
             "ticketStatuses": "Ticket Statuses",
-            "console": "Console",
-            "activities": "Activities",
             "files": "Files",
             "databases": "Databases",
             "schedules": "Schedules",
@@ -852,6 +1016,7 @@
         "description": "View the audit logs for this server.",
         "events": "Events",
         "allEvents": "All Events",
+        "viewDetails": "View details",
         "searchPlaceholder": "Search activities...",
         "noActivityPermission": "You do not have permission to view server activities.",
         "failedToFetch": "Failed to fetch activities",
@@ -861,6 +1026,9 @@
         "daysAgo": "{days} days ago",
         "details": {
             "description": "Detailed information about this server event.",
+            "eventSummary": "Event summary",
+            "ipAddress": "IP address",
+            "fieldsCount": "{count} fields",
             "timestamp": "Timestamp",
             "executingUser": "Executing User",
             "metadataPayload": "Metadata Payload",
@@ -868,6 +1036,7 @@
             "copyPayload": "Copy Payload",
             "payloadCopied": "Log payload copied",
             "closeEntry": "Close Entry",
+            "noMetadata": "No additional metadata for this event.",
             "system": "System"
         },
         "noActivitiesFound": "No Activities Found",
@@ -945,7 +1114,38 @@
         "noDatabaseHostsDescription": "No database hosts are configured. Please contact an administrator to set up database hosts.",
         "failedToOpenPhpMyAdmin": "Failed to open phpMyAdmin",
         "openingPhpMyAdmin": "Opening phpMyAdmin...",
-        "noHostSelected": "Please select a database host"
+        "noHostSelected": "Please select a database host",
+        "allHosts": "All Hosts",
+        "exportSql": "Export SQL",
+        "exportSuccess": "Exported {count} table(s)",
+        "exportFailed": "Failed to export database",
+        "importSql": "Import SQL",
+        "importSqlTitle": "Import SQL",
+        "importEmptyPayload": "Please provide SQL content to import",
+        "importSuccess": "Imported {count} statement(s) successfully",
+        "importCompleteWithErrors": "Completed with {count} error(s)",
+        "importFailed": "Import failed",
+        "importAgain": "Import Again",
+        "continueOnErrors": "Continue on errors",
+        "continueOnErrorsHelp": "Skip failing statements instead of stopping at the first error",
+        "clickToUploadSql": "Click to upload a .sql file",
+        "orPasteSql": "or paste SQL",
+        "import": "Import",
+        "importSuccessLabel": "Import successful",
+        "importCompleteWithErrorsLabel": "Completed with errors",
+        "statementsExecuted": "{count} statement(s) executed",
+        "errorsHeader": "Errors",
+        "skipWarningInFuture": "Skip this warning in the future",
+        "runQuery": "Run Query",
+        "runQueryTitle": "Run Query",
+        "queryEmptyPayload": "Please enter a query to run",
+        "queryFailed": "Query failed",
+        "running": "Running...",
+        "runWithShortcut": "Run (Ctrl+↵)",
+        "rowsReturned": "{count} row(s) returned",
+        "rowsAffected": "{count} row(s) affected",
+        "truncatedTo": "(truncated to {limit})",
+        "queryExecuted": "Query executed — {count} row(s) affected"
     },
     "serverBackups": {
         "title": "Backups",
@@ -999,7 +1199,15 @@
         "confirmDeleteTitle": "Delete Backup",
         "confirmLockTitle": "Lock Backup",
         "confirmUnlockTitle": "Unlock Backup",
-        "failedToPerformAction": "Failed to perform action"
+        "failedToPerformAction": "Failed to perform action",
+        "caution": "Caution",
+        "truncateDirectoryDescription": "This will clear the server folder before restoring",
+        "creating": "Creating backup, please wait...",
+        "failed": "Backup failed",
+        "inProgress": "IN PROGRESS",
+        "pleaseWait": "Please wait...",
+        "restoreConfirm": "The VM will be stopped and restored to the state of this backup. All current data will be replaced. This action cannot be undone.",
+        "restoreWarning": "Warning: This will overwrite all current data!"
     },
     "serverImport": {
         "title": "Server Import",
@@ -1092,20 +1300,32 @@
         "enabled": "Enabled",
         "disabled": "Disabled",
         "fastDlUrl": "FastDL URL",
-        "configuration": "Configuration",
+        "configuration": "FastDL Configuration",
         "configurationDescription": "Configure FastDL settings for your server.",
         "directory": "Directory",
-        "directoryPlaceholder": "e.g., csgo (optional)",
-        "directoryHelp": "Optional subdirectory within your server's data directory. Leave empty to serve from the server root.",
+        "directoryPlaceholder": "fastdl",
+        "directoryHelp": "Leave empty to use the default /fastdl directory. Optional subdirectory within your server's data directory (e.g., \"csgo\").",
         "saveChanges": "Save Changes",
         "enableFastDl": "Enable FastDL",
         "disableFastDl": "Disable FastDL",
+        "enabling": "Enabling...",
+        "disabling": "Disabling...",
         "quickActions": "Quick Actions",
         "quickActionsDescription": "Quick actions for managing your FastDL configuration.",
         "copyUrl": "Copy URL",
         "openUrl": "Open URL",
+        "gameServerCommand": "Game Server Command",
+        "copyCommand": "Copy command",
+        "commandCopied": "Command copied to clipboard",
+        "copyError": "Failed to copy to clipboard",
+        "commandHelp": "Add this command to your server's server.cfg or run it in the console",
         "infoTitle": "About FastDL",
         "infoDescription": "FastDL allows game servers to serve files directly from the Wings node via nginx, providing faster download speeds for players. This is particularly useful for Source Engine games (CS:GO, TF2, Garry's Mod, etc.) and other games that support custom download URLs. After enabling FastDL, configure your game server to use the provided URL.",
+        "howItWorks": "How FastDL Works",
+        "step1": "Upload your game files to /fastdl in your server's file manager",
+        "step2": "Copy the command above and add it to your server configuration",
+        "step3": "Players will download maps/mods from your FastDL server instead of your game server",
+        "step4": "This reduces server load and speeds up downloads for players",
         "serverUuid": "Server UUID",
         "fetchError": "Failed to fetch FastDL configuration",
         "enableSuccess": "FastDL enabled successfully",
@@ -1114,10 +1334,10 @@
         "disableError": "Failed to disable FastDL",
         "updateSuccess": "FastDL configuration updated successfully",
         "updateError": "Failed to update FastDL configuration",
+        "featureDisabled": "FastDL Feature Disabled",
+        "featureDisabledDescription": "FastDL management has been disabled by the administrator. Please contact support if you need this feature enabled.",
         "accessDenied": "Access Denied",
-        "accessDeniedDescription": "You don't have permission to view FastDL settings for this server.",
-        "featureDisabled": "FastDL Management Disabled",
-        "featureDisabledDescription": "FastDL management has been disabled by the administrator."
+        "accessDeniedDescription": "You don't have permission to view FastDL settings for this server."
     },
     "serverProxy": {
         "title": "Reverse Proxy",
@@ -1242,7 +1462,25 @@
         "noSchedulePermission": "You do not have permission to view schedules.",
         "featureDisabled": "Schedules Disabled",
         "featureDisabledDescription": "The schedules feature has been disabled by the administrator. Please contact support if you need to automate server tasks.",
-        "disabled": "Schedule is disabled"
+        "disabled": "Schedule is disabled",
+        "runNow": "Run Now",
+        "runQueued": "Schedule queued — it will run on the next cron tick",
+        "runFailed": "Failed to run schedule",
+        "export": "Export",
+        "exportSuccess": "Schedule exported",
+        "exportFailed": "Failed to export schedule",
+        "import": "Import",
+        "importScheduleTitle": "Import Schedule",
+        "importScheduleDescription": "Upload a previously exported schedule JSON file or paste the JSON directly.",
+        "importScheduleButton": "Import Schedule",
+        "importSuccess": "Schedule imported with {count} task(s)",
+        "importFailed": "Failed to import schedule",
+        "importEmptyPayload": "Please provide a JSON payload to import",
+        "importInvalidJson": "Invalid JSON – please check the file or paste",
+        "clickToUploadJson": "Click to upload a .json file",
+        "orPasteJson": "or paste JSON",
+        "nextRun": "Next:",
+        "showing": "Showing {from}–{to} of {total}"
     },
     "serverTasks": {
         "title": "Schedule Tasks",
@@ -1760,16 +1998,20 @@
         "toolbar": {
             "selected": "Selected",
             "cancel": "Cancel",
+            "clear_completed": "Clear completed",
             "download": "Download",
             "compress": "Compress",
             "move": "Move",
             "copy": "Copy",
+            "open_in_ide": "Open in IDE",
             "permissions": "Permissions",
             "refresh": "Refresh",
             "new_file": "New File",
             "new_folder": "New Folder",
             "pull": "Pull",
             "upload": "Upload",
+            "upload_files": "Upload files",
+            "upload_folders": "Upload folder(s)",
             "ignored_content": "Ignored Content",
             "wipe_all": "Wipe All"
         },
@@ -1791,6 +2033,11 @@
             "uploading": "Uploading {file}...",
             "upload_complete": "Upload complete",
             "upload_failed": "Upload failed",
+            "uploading_folder": "Uploading folder",
+            "uploading_folder_progress": "Uploading folder ({current} of {total} files)",
+            "upload_folder_complete": "Folder upload complete ({count} files)",
+            "upload_folder_error": "Folder upload failed",
+            "uploading_files_progress": "Uploading {current} of {total} files",
             "drop_to_upload": "Drop to Upload",
             "drop_description": "Release your files to start uploading to"
         },
@@ -1799,6 +2046,7 @@
             "description": "Editing file at {path}",
             "read_only": "Read Only",
             "cancel": "Cancel",
+            "open_in_ide": "Open in IDE",
             "encrypting": "Encrypting...",
             "save_changes": "Save Changes",
             "saving": "Saving file...",
@@ -1807,7 +2055,18 @@
             "load_error": "Failed to load file content",
             "loading_description": "Please wait while the file content is loaded",
             "loading_title": "Loading File...",
-            "load_timeout": "File loading timed out. The file may be too large or the server is taking too long to respond."
+            "load_timeout": "File loading timed out. The file may be too large or the server is taking too long to respond.",
+            "unsaved_prompt": "You have unsaved changes in this file. Are you sure you want to leave without saving?",
+            "window_title": "File Editor"
+        },
+        "search": {
+            "files_placeholder": "Filter files in this folder...",
+            "contents_placeholder": "Search text in files...",
+            "search": "Search",
+            "stop": "Stop",
+            "no_results": "No matches found in this folder",
+            "results_title": "Search results",
+            "result_item": "{count} matches in {file}"
         },
         "editors": {
             "minecraftProperties": {
@@ -2522,6 +2781,42 @@
     },
     "admin": {
         "navbar": {},
+        "affiliates": {
+            "title": "Recommended Partners",
+            "description": "Affiliate hosting partners for game and VDS infrastructure.",
+            "banner_title": "Sponsors & Affiliates",
+            "banner_description": "These partners help us keep FeatherPanel free and actively maintained.",
+            "hide_this": "Hide this",
+            "hide_confirm": "Hide this section permanently on this browser?",
+            "hide_cancel_title": "Okay :(((",
+            "hide_cancel_description": "Just know that affiliates or sponsorships help us keep this project fully free. We would really appreciate if you buy from our affiliates or support us via cloud.mythical.systems, GitHub Sponsors, PayPal, or Stripe.",
+            "load_failed": "Failed to load affiliate partners.",
+            "no_results": "No affiliate partners are available right now.",
+            "visit_partner": "Visit Partner",
+            "bgp_tools": "BGP Tools",
+            "view_on_bgp_tools": "View on BGP Tools",
+            "rating": "Rating",
+            "pricing_minimums": "Pricing Minimums",
+            "affiliate_alt": "Affiliate",
+            "vps": "VPS",
+            "dedicated": "Dedicated",
+            "storage_vps": "Storage VPS",
+            "webhosting": "Web Hosting",
+            "currency": "Currency",
+            "asn": "ASN",
+            "primary_asn": "Primary ASN",
+            "network": "Network",
+            "upstreams": "Upstreams",
+            "port_speeds": "Port Speeds",
+            "ddos_protection": "DDoS Protection",
+            "features": "Features",
+            "support_title": "Support FeatherPanel",
+            "support_description": "Affiliate purchases and sponsorships help us keep FeatherPanel free. You can support us with partner purchases, addons at cloud.mythical.systems, or direct donations.",
+            "support_cloud": "Buy Addons",
+            "support_github": "GitHub Sponsors",
+            "support_paypal": "PayPal",
+            "support_stripe": "Stripe"
+        },
         "logs": {
             "title": "Logs",
             "description": "View application, web, and mail logs",
@@ -2548,6 +2843,54 @@
                 "cleared": "Logs cleared successfully",
                 "clear_failed": "Failed to clear logs"
             }
+        },
+        "oidcProviders": {
+            "title": "OIDC Providers",
+            "description": "Configure one or more OpenID Connect Single Sign-On providers.",
+            "configuredProviders": "Configured Providers",
+            "addProvider": "Add Provider",
+            "loading": "Loading providers…",
+            "noProviders": "No providers configured yet.",
+            "createProvider": "Create Provider",
+            "editProvider": "Edit Provider",
+            "enabled": "Enabled",
+            "disabled": "Disabled",
+            "edit": "Edit",
+            "enable": "Enable",
+            "disable": "Disable",
+            "delete": "Delete",
+            "cancel": "Cancel",
+            "save": "Save",
+            "form": {
+                "name": "Name",
+                "issuerUrl": "Issuer URL",
+                "issuerUrlPlaceholder": "https://auth.example.com/realms/main",
+                "clientId": "Client ID",
+                "clientSecret": "Client Secret",
+                "clientSecretPlaceholder": "Leave empty to keep existing secret",
+                "scopes": "Scopes",
+                "scopesPlaceholder": "openid email profile",
+                "emailClaim": "Email claim",
+                "emailClaimPlaceholder": "email",
+                "subjectClaim": "Subject claim",
+                "subjectClaimPlaceholder": "sub",
+                "groupClaim": "Group/role claim (optional)",
+                "groupClaimPlaceholder": "groups",
+                "groupValue": "Required group/role value (optional)",
+                "groupValuePlaceholder": "admins",
+                "autoProvision": "Auto-provision users",
+                "requireEmailVerified": "Require email verified",
+                "enabledLabel": "Enabled"
+            },
+            "messages": {
+                "fetch_failed": "Failed to load providers",
+                "deleted": "Provider deleted",
+                "delete_failed": "Failed to delete provider",
+                "saved": "Provider saved",
+                "save_failed": "Failed to save provider",
+                "toggle_failed": "Failed to toggle provider state"
+            },
+            "deleteConfirm": "Delete provider \"{name}\"?"
         },
         "roles": {
             "title": "Roles & Permissions",
@@ -2634,7 +2977,29 @@
                 "name": "Name",
                 "description": "Description",
                 "flag": "Country Flag (Optional)",
-                "flag_none": "None"
+                "flag_none": "None",
+                "type": "Location Type",
+                "type_description": "Each location serves one infrastructure type only. The type is permanent and cannot be changed after creation.",
+                "type_immutable_notice": "Location type is permanent and was set when this location was created."
+            },
+            "type": {
+                "game": {
+                    "label": "Game Hosting",
+                    "description": "Managed by FeatherWings (Wings)",
+                    "badge": "Game"
+                },
+                "vps": {
+                    "label": "VDS / VPS",
+                    "description": "Managed by Proxmox (PVE)",
+                    "badge": "VPS",
+                    "coming_soon": "Coming Soon"
+                },
+                "web": {
+                    "label": "Web Hosting",
+                    "description": "Managed by FeatherFly (WebHosting)",
+                    "badge": "Web",
+                    "coming_soon": "Coming Soon"
+                }
             },
             "actions": {
                 "edit": "Edit location",
@@ -2663,6 +3028,681 @@
                     "step3": "Click Nodes to add and manage nodes for that location."
                 }
             }
+        },
+        "vdsNodes": {
+            "title": "Nodes (VDS)",
+            "description": "Connect and manage Proxmox nodes for VPS / VDS virtualization.",
+            "viewAndManage": "View and manage VDS nodes in the location: {location}.",
+            "search_placeholder": "Search VDS nodes by name or FQDN...",
+            "tabs": {
+                "details": "Details",
+                "connection": "Connection",
+                "advanced": "Advanced",
+                "storage": "Storage Configuration",
+                "ip_pool": "IP Pool",
+                "templates": "Templates",
+                "dhcp": "DHCP Agent",
+                "firewall": "Firewall",
+                "info": "Info",
+                "plans": "Plans"
+            },
+            "templates": {
+                "title": "VM Templates",
+                "description": "Templates are pre-built VM images (e.g. Ubuntu, Debian) that Proxmox clones when creating a new VM. Register each template by name and its Template VMID from Proxmox.",
+                "add": "Add template",
+                "empty": "No templates yet",
+                "empty_desc": "Add a template to use when creating VM instances from plans on this node. The Template VMID is the VMID of the VM you converted to template in Proxmox.",
+                "col_name": "Name",
+                "col_vmid": "Template VMID",
+                "col_type": "Type",
+                "col_actions": "Actions",
+                "create_title": "Add template",
+                "create_desc": "Register a Proxmox template so it appears when creating VMs. The Template VMID is the VMID of the template VM in Proxmox (Datacenter → your node → the template).",
+                "create_desc_select": "Select a VM from Proxmox — name and VMID will be filled. Prefer VMs you have converted to template in Proxmox.",
+                "field_name": "Template name",
+                "field_name_placeholder": "e.g. Ubuntu 22.04",
+                "field_name_help": "Editable; used as the template name in the panel.",
+                "field_name_required": "Template name is required",
+                "field_select_vm": "Select VM from Proxmox",
+                "select_vm_placeholder": "— Select a VM —",
+                "select_vm_first": "Select a VM from Proxmox first",
+                "loading_vms": "Loading VMs from Proxmox…",
+                "no_vms": "No VMs found. Create a VM in Proxmox and convert to template (right‑click VM → Convert to template), then try again.",
+                "field_vmid": "Template VMID",
+                "field_vmid_placeholder": "e.g. 9000",
+                "field_vmid_help": "The VMID of the template VM in Proxmox (right‑click VM → Convert to template first).",
+                "field_guest_type": "Guest type",
+                "field_description": "Description (optional)",
+                "field_lxc_root_password": "Default LXC root password",
+                "field_lxc_root_password_placeholder": "e.g. P@ssw0rd (shown to users after deploy)",
+                "field_lxc_root_password_help": "Informational only. FeatherPanel does not change the root password on the container; this value is just displayed to users as the default root password for LXC instances created from this template.",
+                "create_success": "Template added successfully.",
+                "create_failed": "Failed to add template.",
+                "delete_success": "Template deleted.",
+                "delete_failed": "Failed to delete template.",
+                "delete_confirm_title": "Delete template?",
+                "delete_confirm_desc": "This only removes the template from FeatherPanel. The VM on Proxmox is not affected."
+            },
+            "info": {
+                "version_title": "Proxmox VE Version",
+                "version_description": "Live version information fetched directly from \"{name}\".",
+                "version_fetch_failed": "Failed to retrieve version from Proxmox.",
+                "nodes_title": "Cluster Nodes",
+                "nodes_description": "All hypervisor nodes visible from this Proxmox endpoint.",
+                "nodes_fetch_failed": "Failed to retrieve node list from Proxmox.",
+                "no_nodes": "No nodes returned by Proxmox.",
+                "pve_version": "Full Version",
+                "pve_release": "Release",
+                "pve_repoid": "Commit ID",
+                "pve_console": "Default Console",
+                "pve_console_default": "not set",
+                "col_node": "Node",
+                "col_status": "Status",
+                "col_cpu": "CPU",
+                "col_memory": "Memory",
+                "col_disk": "Disk",
+                "col_uptime": "Uptime",
+                "last_fetched": "Last refreshed at {time}"
+            },
+            "edit": {
+                "title": "Edit VDS Node",
+                "description": "Update Proxmox connection details, location and IP pool."
+            },
+            "form": {
+                "create_title": "Create VDS Node",
+                "create_description": "Connect a new Proxmox hypervisor to FeatherPanel using a PVE API token.",
+                "create_short": "Create VDS Node",
+                "edit_title": "Edit VDS Node",
+                "edit_description": "Update Proxmox connection details, location and network settings.",
+                "basic_details": "Basic Details",
+                "proxmox": "Proxmox API Access",
+                "network": "Network & SSL",
+                "storage_config": "Storage Configuration",
+                "name": "Display Name",
+                "name_required": "A display name is required",
+                "description": "Description",
+                "description_placeholder": "Optional description for this VDS node",
+                "location": "VPS Location",
+                "location_required": "A VPS location is required",
+                "select_location": "Select a VPS location for this node",
+                "select_location_description": "Only locations of type VPS can be used for VDS nodes.",
+                "storage_auto": "Auto (panel default)",
+                "efi_storage": "EFI Disk Storage",
+                "efi_storage_help": "Proxmox storage used for `efidisk0` when EFI is enabled on VM instances.",
+                "tpm_storage": "TPM State Storage",
+                "tpm_storage_help": "Proxmox storage used for `tpmstate0` when TPM is enabled on VM instances.",
+                "backup_storage": "Backup Storage",
+                "backup_storage_help": "Proxmox storage used for vzdump backups (node default).",
+                "search_location": "Search VPS locations...",
+                "search_locations": "Search VPS locations...",
+                "no_locations": "No VPS locations found. Create a location of type VPS first.",
+                "no_locations_found": "No VPS locations found. Make sure you created locations of type VPS.",
+                "user": "Proxmox User",
+                "user_help": "The user name in Proxmox, e.g. root@pam or apiuser@pve.",
+                "user_required": "A Proxmox user is required",
+                "token_id": "Token ID",
+                "token_id_help": "The API token identifier, e.g. mytoken (without the user prefix).",
+                "token_id_required": "A token ID is required",
+                "secret": "Token Secret",
+                "secret_help": "Leave blank to keep the existing secret unchanged.",
+                "secret_required": "A token secret is required",
+                "fqdn": "Proxmox Hostname / IP",
+                "fqdn_required": "A Proxmox hostname or IP is required",
+                "fqdn_invalid": "Please enter a valid hostname or IP",
+                "scheme": "Scheme",
+                "scheme_https": "HTTPS",
+                "scheme_http": "HTTP",
+                "port": "Port",
+                "port_invalid": "Port must be a valid TCP port (1-65535)",
+                "tls_no_verify": "TLS Verification",
+                "tls_no_verify_false": "Verify TLS certificates (recommended)",
+                "tls_no_verify_true": "Skip TLS verification (only for testing or labs)",
+                "timeout": "Timeout (seconds)",
+                "timeout_invalid": "Timeout must be a positive number of seconds",
+                "submit_create": "Create VDS Node",
+                "submit_save": "Save Changes",
+                "http_advanced": "Advanced HTTP Options",
+                "headers": "Custom Headers",
+                "headers_help": "Optional HTTP headers to send with each Proxmox API request (for proxies, extra auth, etc.).",
+                "headers_key_placeholder": "Header name (e.g. X-Forwarded-Host)",
+                "headers_value_placeholder": "Header value",
+                "headers_add": "Add header",
+                "params": "Query Parameters",
+                "params_help": "Optional query parameters to append to Proxmox API requests.",
+                "params_key_placeholder": "Parameter name",
+                "params_value_placeholder": "Parameter value",
+                "params_add": "Add parameter"
+            },
+            "advanced": {
+                "headers_title": "Custom Request Headers",
+                "headers_description": "Inject additional HTTP headers into every Proxmox API request — useful for reverse-proxy authentication or custom routing.",
+                "params_title": "Custom Query Parameters",
+                "params_description": "Append extra query string parameters to every Proxmox API request.",
+                "no_headers": "No custom headers configured.",
+                "no_params": "No custom query parameters configured.",
+                "key_placeholder": "Key",
+                "value_placeholder": "Value",
+                "add_header": "Add Header",
+                "add_param": "Add Parameter",
+                "warning_title": "Caution",
+                "warning_text": "Custom headers and parameters are sent with every API request to this Proxmox node. Only add entries you trust and understand, as they could affect authentication or API behaviour."
+            },
+            "health": {
+                "online": "Online",
+                "offline": "Offline",
+                "unknown": "Unknown",
+                "refresh": "Refresh connection status"
+            },
+            "connection": {
+                "online": "Online",
+                "offline": "Offline",
+                "unknown": "Unknown",
+                "test_button": "Test Connection",
+                "success": "Connected — {count} node(s) returned in {ms}ms.",
+                "failed": "Connection failed.",
+                "token_setup_reminder_title": "Token setup reminder",
+                "token_setup_reminder_description": "Use a Proxmox API token created for the intended account, and verify the permissions match the actions FeatherPanel will perform on this node."
+            },
+            "storage": {
+                "fetch_failed": "Failed to fetch storages",
+                "image_storages_title": "Image Storages",
+                "image_storages_description": "Configure where VM disk images are stored",
+                "backup_storage_title": "Backup Storage",
+                "backup_storage_description": "Configure where VM backups are stored"
+            },
+            "dhcp": {
+                "title": "DHCP Agent",
+                "blank_title": "DHCP Agent - Coming Soon",
+                "blank_description": "Unlock the full potential of your VMs with dynamic DHCP-driven network configuration",
+                "cards": {
+                    "dynamic_ip_title": "Dynamic IP Assignment",
+                    "dynamic_ip_description": "Leverage the ISC DHCP protocol to automatically assign and manage IP addresses for your Virtual Machines with zero manual intervention.",
+                    "multiple_ip_title": "Multiple IP Assignment",
+                    "multiple_ip_description": "Assign multiple IP addresses to single VMs through advanced DHCP configuration, enabling complex networking scenarios and failover capabilities.",
+                    "automation_title": "Extensive Actions & Automation",
+                    "automation_description": "Execute custom hooks and automated actions triggered by DHCP events. Automate DNS updates, firewall rules, load balancer configuration, VM provisioning workflows, and enterprise networking policies."
+                },
+                "footer_description": "The DHCP Agent feature is currently being developed. Once available, it will provide a powerful interface to manage VM network configuration through industry-standard DHCP protocols, with extensive customization options for enterprise environments."
+            },
+            "firewall_tab": {
+                "title": "Firewall Rules",
+                "blank_title": "Firewall - Coming Soon",
+                "blank_description": "Advanced network security and traffic control for your VMs",
+                "cards": {
+                    "inbound_title": "Inbound Rules",
+                    "inbound_description": "Create and manage inbound firewall rules to control which traffic is allowed into your virtual machines and services.",
+                    "outbound_title": "Outbound Rules",
+                    "outbound_description": "Restrict outbound connections to prevent data exfiltration and control which external services your VMs can reach.",
+                    "advanced_title": "Advanced Rule Sets",
+                    "advanced_description": "Build sophisticated firewall policies with stateful inspection, protocol-specific rules, rate limiting, and integration with threat intelligence feeds for enhanced security."
+                },
+                "footer_description": "Firewall management capabilities are currently under development. This feature will provide granular network access control, DDoS protection, and compliance-ready security policies for your infrastructure."
+            },
+            "messages": {
+                "fetch_failed": "Failed to fetch VDS nodes",
+                "created": "VDS node created successfully",
+                "create_failed": "Failed to create VDS node",
+                "updated": "VDS node updated successfully",
+                "update_success": "VDS node updated successfully",
+                "update_failed": "Failed to update VDS node",
+                "delete_success": "VDS node deleted successfully",
+                "delete_failed": "Failed to delete VDS node",
+                "connection_ok": "Connection to Proxmox node successful",
+                "connection_failed": "Failed to test connection to Proxmox node",
+                "connection_check_failed": "Failed to test connections for all Proxmox nodes"
+            },
+            "errors": {
+                "fetch_failed": "Failed to load VDS node details.",
+                "fetch_locations_failed": "Failed to load VPS locations.",
+                "validation_failed": "Please fix the validation errors and try again.",
+                "save_failed": "Failed to save VDS node changes."
+            },
+            "health.refresh": "Refresh connection status",
+            "actions": {
+                "test_connection": "Test connection",
+                "filter_by_location": "Filter by location",
+                "edit": "Edit VDS node",
+                "delete": "Delete VDS node",
+                "confirm_delete": "Confirm delete",
+                "cancel_delete": "Cancel"
+            },
+            "no_results": "No VDS nodes found",
+            "help": {
+                "what": {
+                    "title": "What are VDS Nodes?",
+                    "description": "VDS nodes in FeatherPanel map to your Proxmox hypervisors and allow you to provision and manage virtual machines."
+                },
+                "utility": {
+                    "title": "How are they used?",
+                    "connect": "Connect Proxmox clusters to FeatherPanel using API tokens.",
+                    "monitor": "Monitor basic connectivity to each hypervisor from the panel.",
+                    "mapLocations": "Bind each VDS node to a VPS location so customers know where their VMs live."
+                },
+                "locations": {
+                    "title": "VPS Locations",
+                    "description": "Only locations marked as type \"VPS\" can be used for VDS nodes to keep game and VPS capacity clearly separated."
+                },
+                "proxmox": {
+                    "title": "Proxmox Integration",
+                    "p1": "FeatherPanel talks to Proxmox using PVE API tokens over HTTPS, so your credentials never need to be entered directly on each node.",
+                    "p2": "Use the connection test action to quickly verify that your token, host, and SSL configuration are valid."
+                }
+            },
+            "ips": {
+                "title": "IP Pool",
+                "description": "IP addresses configured on node \"{name}\".",
+                "add_button": "Add IP",
+                "search_placeholder": "Filter by IP, gateway or notes...",
+                "empty": "No IPs configured for this node yet.",
+                "no_results": "No IPs match your search.",
+                "notes_placeholder": "Optional notes about this IP",
+                "col_ip": "IP Address",
+                "col_cidr": "CIDR",
+                "col_gateway": "Gateway",
+                "col_notes": "Notes",
+                "col_status": "Status",
+                "primary_badge": "Primary",
+                "primary_proxmox_help": "Proxmox host IP — do not assign to VMs",
+                "in_use_badge": "In use",
+                "available": "Available",
+                "cannot_delete_in_use": "Cannot delete: IP is assigned to a VM",
+                "set_primary": "Set as primary",
+                "primary_success": "Primary IP updated successfully.",
+                "primary_failed": "Failed to set primary IP.",
+                "fetch_failed": "Failed to load IP pool.",
+                "add_success": "IP added successfully.",
+                "add_failed": "Failed to add IP.",
+                "update_success": "IP updated successfully.",
+                "update_failed": "Failed to update IP.",
+                "delete_success": "IP deleted successfully.",
+                "delete_failed": "Failed to delete IP.",
+                "confirm_delete_title": "Delete IP?",
+                "confirm_delete_description": "This IP will be permanently removed from the node's IP pool. This action cannot be undone.",
+                "create": {
+                    "title": "Add IP Address",
+                    "description": "Add a new IP address to this node's IP pool."
+                },
+                "edit": {
+                    "title": "Edit IP Address",
+                    "description": "Update metadata for {ip}.",
+                    "ip_immutable": "The IP address cannot be changed. Delete and re-add to use a different address."
+                },
+                "errors": {
+                    "ip_required": "An IP address is required.",
+                    "ip_invalid": "Please enter a valid IPv4 address.",
+                    "cidr_invalid": "CIDR prefix length must be between 0 and 32.",
+                    "gateway_invalid": "Please enter a valid gateway IPv4 address."
+                },
+                "help": {
+                    "what_are_ips": "What is the IP Pool?",
+                    "what_are_ips_text": "The IP pool lists all public IP addresses available on this Proxmox node. These IPs can be assigned to virtual machines when provisioning.",
+                    "primary_ip": "Primary IP",
+                    "primary_ip_text": "The primary IP is the default outbound address for the node. Only one IP can be marked as primary at a time — click the star icon on any row to change it."
+                }
+            },
+            "plans": {
+                "description": "Manage VM and container hardware plans available on {name}."
+            }
+        },
+        "vmPlans": {
+            "title": "VM Plans",
+            "description": "Define hardware specs and resource limits for virtual machines and containers.",
+            "search_placeholder": "Search plans by name or type…",
+            "table": {
+                "title": "Plans",
+                "col_name": "Name",
+                "col_type": "Type",
+                "col_instances": "Instances",
+                "col_actions": "Actions"
+            },
+            "empty": {
+                "title": "No plans yet",
+                "description": "Create your first VM plan to start provisioning VMs and containers.",
+                "no_results": "No plans match your search."
+            },
+            "actions": {
+                "create": "New Plan",
+                "edit": "Edit",
+                "delete": "Delete",
+                "cancel": "Cancel"
+            },
+            "sheet": {
+                "create_title": "Create VM Plan",
+                "create_description": "Define the hardware specs for a new VM or LXC container plan.",
+                "edit_title": "Edit VM Plan",
+                "edit_description": "Update hardware specs for this plan.",
+                "section_basic": "Basic Information",
+                "section_cpu": "CPU",
+                "section_memory": "Memory",
+                "section_storage": "Storage",
+                "section_network": "Network",
+                "section_options": "Options"
+            },
+            "fields": {
+                "name": "Plan Name",
+                "description": "Description",
+                "description_placeholder": "Optional description",
+                "vm_type": "VM Type",
+                "is_active": "Status",
+                "cpus": "Sockets",
+                "cores": "Cores per socket",
+                "cpu_type": "CPU Type",
+                "memory": "RAM (MB)",
+                "swap": "Swap (MB)",
+                "disk": "Disk Size (GB)",
+                "storage": "Storage Pool",
+                "disk_type": "Disk Type",
+                "disk_format": "Disk Format",
+                "bridge": "Bridge",
+                "vlan_id": "VLAN ID",
+                "net_model": "NIC Model",
+                "net_rate": "Rate Limit (MB/s, 0=unlimited)",
+                "bandwidth": "Monthly Bandwidth (GB, 0=unlimited)",
+                "on_boot": "Start on Boot",
+                "firewall": "Firewall",
+                "unprivileged": "Unprivileged Container"
+            },
+            "success": {
+                "created": "VM plan created successfully.",
+                "updated": "VM plan updated successfully.",
+                "deleted": "VM plan deleted."
+            },
+            "errors": {
+                "fetch_failed": "Failed to load VM plans.",
+                "name_required": "Plan name is required.",
+                "plan_in_use": "This plan is assigned to one or more instances and cannot be deleted."
+            },
+            "stats": {
+                "plans_total": "Total Plans",
+                "instances_total": "Total Instances",
+                "running": "Running",
+                "stopped": "Stopped",
+                "instances": "instances"
+            },
+            "spec": {
+                "sockets": "sockets",
+                "cores": "cores"
+            },
+            "help": {
+                "what": {
+                    "title": "What are VM Plans?",
+                    "description": "VM Plans define the hardware specifications (CPU, RAM, disk, network) that will be applied when provisioning a virtual machine or container on a Proxmox node."
+                },
+                "qemu": {
+                    "title": "QEMU/KVM Virtual Machines",
+                    "description": "Full hardware virtualisation — runs any OS. Supports CPU passthrough, live migration, snapshots, and nested virtualisation."
+                },
+                "lxc": {
+                    "title": "LXC Containers",
+                    "description": "OS-level containers sharing the host kernel. Lower overhead than full VMs, faster boot times, and more efficient for Linux workloads."
+                },
+                "templates": {
+                    "title": "What are VM Templates?",
+                    "description": "Templates are pre-built VM images (e.g. Ubuntu 22.04, Debian 12) that Proxmox clones when creating a new VM. For QEMU/KVM plans, creating an instance always uses a template — the panel clones that VM and applies the plan's CPU, RAM and disk. LXC can use different flows.",
+                    "how_to_setup": "How to set up templates",
+                    "step1": "On your Proxmox host: create a VM, install the OS, clean it (e.g. remove machine-id, cloud-init if needed), then in the Proxmox UI right‑click the VM → Convert to template.",
+                    "step2": "In FeatherPanel: go to VM Nodes (VDS Nodes), open the node that runs that Proxmox host, and open the Templates tab. Add a template: give it a name and the Template VMID (the VMID of the template VM in Proxmox). Once registered, that template appears when creating a VM instance from a plan on this node."
+                }
+            }
+        },
+        "vmInstances": {
+            "description": "Manage all VDS/VPS instances in your system.",
+            "create": "Create VDS Instance",
+            "create_desc": "Provision a new VPS from a node, template, and resources.",
+            "errors": {
+                "fetch_failed": "Failed to load VM instances.",
+                "hostname_required": "Hostname is required.",
+                "owner_required": "You must select an owner for this VM.",
+                "ci_user_required": "Cloud-init username is required.",
+                "ci_password_required": "Cloud-init password is required."
+            },
+            "create_success": "VM instance created successfully.",
+            "creating_clone": "Cloning template…",
+            "creating_timeout": "Creation timed out. Check the instance list or try again.",
+            "edit": "Edit instance",
+            "title": "VDS Instances",
+            "edit_desc": "Update hostname, notes, owner, IP, resources, and disks.",
+            "update_success": "VM instance updated.",
+            "edit_tabs": {
+                "details": "Details",
+                "network": "Network",
+                "resources": "Resources",
+                "disks": "Disks",
+                "history": "Task history"
+            },
+            "dns_server": "DNS server(s)",
+            "dns_domain": "DNS search domain",
+            "history_desc": "Recent create, update, and delete events for this instance.",
+            "no_task_history": "No activity recorded yet.",
+            "resource_usage": "Resource usage",
+            "memory_used": "Memory",
+            "disk_used": "Disk",
+            "vnc_console": "VNC Console",
+            "vnc_connecting": "Connecting to console…",
+            "vnc_hint": "Ensure the VM is running and the Proxmox node is reachable from your browser.",
+            "current_ip": "Current IP",
+            "change_ip": "Change IP",
+            "resize_disk": "Expand disk",
+            "disk_size_placeholder": "e.g. +5G or 20G",
+            "resize_success": "Disk resized successfully.",
+            "network_multi_hint": "Add or remove IPs (Proxmox net0, net1, …). Select IP from pool for each interface.",
+            "network_multi_qemu_hint": "Add or remove IPs for this VM. FeatherPanel will keep virtual NICs and cloud-init ipconfig entries aligned automatically.",
+            "add_ip": "Add IP",
+            "primary_ip": "Primary",
+            "secondary_ip": "Secondary",
+            "disks_list": "Disks",
+            "disk_storage": "Storage",
+            "disk_size_gb": "Size (GB)",
+            "disk_path": "Mount path (optional)",
+            "add_disk": "Add disk",
+            "disk_added": "Disk added successfully.",
+            "disk_removed": "Disk removed.",
+            "disk_size_min": "Size must be at least 1 GB.",
+            "disk_resize_hint": "Use +5G to add 5GB, or 20G to set total to 20GB.",
+            "disks_lxc_only": "Disk resize is available for LXC containers only.",
+            "bios_mode": "BIOS / Firmware",
+            "efi_settings": "EFI disk",
+            "efi_enable": "Enable EFI disk",
+            "tpm_settings": "TPM",
+            "tpm_enable": "Enable TPM 2.0",
+            "delete_success": "VM instance deleted.",
+            "delete_confirm_title": "Delete VM instance?",
+            "delete_confirm_desc": "This will stop and remove the VM from Proxmox and delete the record. This cannot be undone.",
+            "power_success": "Power action completed.",
+            "reinstall": "Reinstall",
+            "reinstall_success": "VM reinstalled from template.",
+            "reinstall_confirm_title": "Reinstall VM instance?",
+            "reinstall_confirm_desc": "This will delete the current VM from Proxmox and clone a fresh one from the original template, keeping the same owner and IP. All data on this VM will be lost.",
+            "reinstall_ci_help": "Enter a new cloud-init username and password for the reinstalled VM. These will be applied to the template's cloud-init config.",
+            "reinstall_ci_user": "Cloud-init username",
+            "reinstall_ci_password": "Cloud-init password",
+            "reinstall_lxc_help": "Enter a new root password for the reinstalled LXC container.",
+            "reinstall_lxc_password": "Root password",
+            "lxc_root_password_label": "Default LXC root password",
+            "lxc_root_password_help": "This is the informational root password stored on the LXC template. FeatherPanel does not change the password on the container; this is for you to show the default credentials to users.",
+            "lxc_root_password_show": "Show password",
+            "lxc_root_password_hide": "Hide password",
+            "lxc_root_password_copied": "Root password copied to clipboard.",
+            "lxc_root_password_copy_failed": "Failed to copy root password.",
+            "ci_user_label": "Cloud-init user",
+            "ci_user_help": "This user will be created inside the VM as the cloud-init ciuser. On Debian/Ubuntu images this user normally has passwordless sudo.",
+            "ci_password_label": "Cloud-init password",
+            "ci_password_help": "This is written to the cloud-init cipassword and lets you log in via console/SSH. Store it somewhere safe; the panel only shows it during creation.",
+            "backups": {
+                "title": "Backups",
+                "limit_label_create": "Backup limit",
+                "limit_help": "Maximum number of backups allowed for this instance (0 = disabled).",
+                "create": "Create Backup",
+                "creating": "Creating backup…",
+                "create_success": "Backup completed!",
+                "create_failed": "Backup failed",
+                "create_timeout": "Backup timed out",
+                "create_form_title": "New Backup",
+                "storage": "Storage",
+                "storage_placeholder": "Select storage…",
+                "compression": "Compression",
+                "compression_zstd": "zstd (recommended)",
+                "compression_lzo": "lzo",
+                "compression_gzip": "gzip",
+                "compression_none": "None",
+                "no_backups": "No backups yet",
+                "limit_label": "backups",
+                "set_limit": "Set limit",
+                "limit_saved": "Backup limit updated",
+                "limit_invalid": "Limit must be between 0 and 100",
+                "col_date": "Date",
+                "col_size": "Size",
+                "col_format": "Format",
+                "col_storage": "Storage",
+                "restore": "Restore",
+                "restoring": "Restoring…",
+                "restore_success": "VM restored from backup!",
+                "restore_failed": "Restore failed",
+                "restore_timeout": "Restore timed out",
+                "restore_confirm_title": "Restore from backup?",
+                "restore_confirm_desc": "The VM will be stopped and overwritten with this backup. All current data will be replaced. The VM will start again after restore.",
+                "delete_success": "Backup deleted",
+                "delete_confirm_title": "Delete backup?",
+                "delete_confirm_desc": "This will permanently delete the backup file from storage. This cannot be undone."
+            },
+            "search_placeholder": "Search by hostname, VMID, or IP...",
+            "empty": "No VM instances",
+            "empty_desc": "Create your first VDS instance to get started",
+            "form_title": "Instance details",
+            "plan": "Plan",
+            "template": "Template (QEMU/KVM)",
+            "template_lxc": "Template (LXC)",
+            "details_status": "Status",
+            "details_vmid": "VMID",
+            "details_node": "Node",
+            "details_plan": "Plan",
+            "details_created": "Created",
+            "details_notes": "Notes",
+            "network_ip_label": "IP",
+            "network_gateway_label": "Gateway",
+            "owner_label": "Owner",
+            "cpu_label": "CPU",
+            "cores_label": "cores",
+            "ram_label": "RAM",
+            "disk_label": "disk",
+            "ip": "IP (optional)",
+            "hostname": "Hostname",
+            "notes": "Notes",
+            "owner": "Owner",
+            "owner_help": "Assign this VM to a user. Required.",
+            "select_owner": "Select owner…",
+            "no_owner_assigned": "No owner assigned",
+            "current_disks": "Current disks",
+            "clear_owner": "Clear owner",
+            "owner_uuid": "Owner (user UUID)",
+            "owner_uuid_help": "User UUID from Users panel. Leave empty to unset owner.",
+            "select_plan": "Select a plan",
+            "select_template": "Select a template (required for QEMU)",
+            "no_templates_qemu": "No QEMU/KVM templates for this node. Add a template in VM Nodes → this node → Templates tab.",
+            "no_templates_lxc": "No LXC templates for this node. Add an LXC template in VM Nodes → this node → Templates tab.",
+            "no_free_ips": "No free IPs for this node. Add IPs in VM Node.",
+            "details": {
+                "title": "VDS Instance Details",
+                "subtitle": "Viewing details for {name}",
+                "view_client_area": "View in Client Area",
+                "basic_info": "Basic Information",
+                "ownership_node": "Ownership & Node",
+                "resource_allocation": "Resource Allocation",
+                "labels": {
+                    "vmid": "VMID:",
+                    "hostname": "Hostname:",
+                    "ip_address": "IP Address:",
+                    "status": "Status:",
+                    "created": "Created:",
+                    "owner": "Owner:",
+                    "owner_email": "Owner Email:",
+                    "node": "Node:",
+                    "plan": "Plan:",
+                    "memory": "Memory:",
+                    "cpu": "CPU:",
+                    "disk": "Disk:"
+                },
+                "not_set": "Not set",
+                "not_assigned": "Not assigned",
+                "unknown": "Unknown"
+            },
+            "network": "Network",
+            "resources": "Plan resources",
+            "hostname_help": "Valid DNS name: only letters, numbers, and hyphens (e.g. my-vm). Required.",
+            "ip_help": "Leave on Auto to assign the first free IP from the node pool.",
+            "node": "VDS Node",
+            "select_node": "Select node",
+            "node_help": "Proxmox node where the VM will be created.",
+            "select_node_template": "Select a node, template, and ensure IPs are available.",
+            "memory": "Memory (MB)",
+            "cpus": "CPUs",
+            "cores": "Cores per CPU",
+            "disk": "Disk (GB)",
+            "storage": "Storage",
+            "bridge": "Bridge",
+            "on_boot": "Start on boot",
+            "wizard": {
+                "step1_title": "Node & template",
+                "step1_subtitle": "Choose node, template, and IP",
+                "step2_title": "Resources",
+                "step2_subtitle": "CPU, memory, disk, and network",
+                "step3_title": "Details & owner",
+                "step3_subtitle": "Hostname and assign owner",
+                "resources_title": "Resources"
+            },
+            "help": {
+                "managing": {
+                    "title": "Managing VDS Instances",
+                    "description": "View, create, edit, and delete VDS instances. Use search and filters to quickly navigate your virtual infrastructure."
+                },
+                "resources": {
+                    "title": "Resources & Configuration",
+                    "description": "Each VDS instance has configurable CPU, memory, disk, and network resources managed through Proxmox VE."
+                },
+                "tips": {
+                    "title": "Tips",
+                    "item1": "Use meaningful hostnames to identify instances at a glance.",
+                    "item2": "Monitor suspended instances and investigate the cause promptly.",
+                    "item3": "Regular backups are essential for VDS instances - configure backup limits appropriately."
+                }
+            },
+            "no_results": "No VDS instances found",
+            "unknown_node": "Unknown Node",
+            "unassigned": "Unassigned",
+            "filters": {
+                "user": "Filter by user",
+                "user_selected": "User: {username}",
+                "select_user": "Select user",
+                "node": "Filter by node",
+                "node_selected": "Node: {name}",
+                "select_node": "Select node",
+                "all_statuses": "All Statuses",
+                "clear": "Clear filters"
+            },
+            "sort": {
+                "newest": "Newest first",
+                "oldest": "Oldest first",
+                "hostname_asc": "Hostname A–Z",
+                "hostname_desc": "Hostname Z–A",
+                "created_desc": "Recently created",
+                "created_asc": "Oldest created"
+            },
+            "status": {
+                "running": "Running",
+                "stopped": "Stopped",
+                "suspended": "Suspended"
+            },
+            "actions": {
+                "view_user": "View user: {username}"
+            },
+            "messages": {
+                "fetch_failed": "Failed to fetch VDS instances",
+                "delete_success": "VDS instance deleted successfully"
+            },
+            "suspend": "Suspend",
+            "unsuspend": "Unsuspend",
+            "suspend_success": "VDS instance suspended successfully",
+            "unsuspend_success": "VDS instance unsuspended successfully"
         },
         "node": {
             "title": "Nodes",
@@ -2713,6 +3753,9 @@
                 "disk_overallocate": "Disk Over-Allocation",
                 "daemon_port": "Daemon Port",
                 "daemon_sftp_port": "Daemon SFTP Port",
+                "sftp_subdomain": "SFTP Hostname (optional)",
+                "sftp_subdomain_placeholder": "sftp.node.domain.de",
+                "sftp_subdomain_help": "Used for user-facing SFTP connection details. Leave empty to use node FQDN/IP.",
                 "ipv4": "Public IPv4",
                 "ipv6": "Public IPv6",
                 "maintenance": "Maintenance Mode",
@@ -2736,16 +3779,26 @@
                 "location_required": "Location is required",
                 "daemon_base_required": "Daemon base path is required",
                 "ipv4_invalid": "Invalid IPv4 address",
-                "ipv6_invalid": "Invalid IPv6 address"
+                "ipv6_invalid": "Invalid IPv6 address",
+                "sftp_subdomain_invalid": "Invalid SFTP hostname"
             },
             "wings": {
                 "config_title": "Wings Configuration",
                 "config_help": "This configuration file should be saved as /etc/featherpanel/config.yml on your Wings daemon.",
                 "copy_config": "Copy Config",
                 "reset_key": "Request Master Daemon Reset Key",
+                "reset_key_help": "Generating a new master daemon key will invalidate the old one. You will need to update your Wings configuration manually.",
                 "reset_key_success": "Master daemon reset key requested successfully",
                 "reset_key_failed": "Failed to request reset key",
-                "config_copied": "Wings configuration copied to clipboard"
+                "config_copied": "Wings configuration copied to clipboard",
+                "setup_command_title": "Quick setup",
+                "setup_command_help": "Run these commands on your node server in order. Step 1 installs FeatherWings; step 2 fetches config from the panel and restarts the daemon.",
+                "setup_step_1": "Step 1 — Install FeatherWings",
+                "setup_step_2": "Step 2 — Fetch config and restart FeatherWings",
+                "copy_setup_command": "Copy command",
+                "setup_command_copied": "Setup command copied to clipboard",
+                "setup_command_then": "Step 2 creates /etc/featherpanel if needed, writes the config, and restarts FeatherWings. Run step 1 first if FeatherWings is not installed.",
+                "setup_command_unavailable": "Setup command could not be loaded."
             },
             "columns": {},
             "actions": {
@@ -3057,6 +4110,43 @@
             "search_placeholder": "Search by name, description, or status...",
             "no_results": "No servers found",
             "create": "Create Server",
+            "filters": {
+                "advanced": "Advanced filters",
+                "owner_id": "Filter by owner ID",
+                "node_id": "Filter by node ID",
+                "server_id": "Filter by server ID",
+                "uuid": "Filter by server UUID",
+                "external_id": "Filter by external ID",
+                "clear": "Clear filters",
+                "user": "Filter by user",
+                "user_selected": "User: {username}",
+                "user_search_placeholder": "Search users by username, email, ID, or UUID...",
+                "user_no_results": "No matching users found",
+                "node": "Filter by node",
+                "node_selected": "Node: {name}",
+                "node_search_placeholder": "Search nodes by name or FQDN...",
+                "node_no_results": "No matching nodes found",
+                "realm": "Filter by realm",
+                "realm_selected": "Realm: {name}",
+                "realm_search_placeholder": "Search realms by name or description...",
+                "realm_no_results": "No matching realms found",
+                "spell": "Filter by spell",
+                "spell_selected": "Spell: {name}",
+                "spell_search_placeholder": "Search spells by name or description...",
+                "spell_no_results": "No matching spells found",
+                "location": "Filter by location",
+                "location_selected": "Location: {name}",
+                "location_search_placeholder": "Search locations by name or description...",
+                "location_no_results": "No matching locations found"
+            },
+            "sort": {
+                "newest": "Newest first",
+                "oldest": "Oldest first",
+                "name_asc": "Name A–Z",
+                "name_desc": "Name Z–A",
+                "created_desc": "Recently created",
+                "created_asc": "Oldest created"
+            },
             "actions": {
                 "view": "View details",
                 "edit": "Edit server",
@@ -3201,8 +4291,9 @@
                 "search_spells": "Search spells by name...",
                 "no_spells_found": "No spells found",
                 "docker_image": "Docker Image",
-                "docker_image_help": "Select the Docker image for this spell. This will be used to deploy the server.",
+                "docker_image_help": "Select or enter the Docker image for this spell. This will be used to deploy the server.",
                 "select_docker_image": "Select Docker image...",
+                "available_docker_images": "Available from spell",
                 "memory": "Memory (MiB)",
                 "memory_help": "The maximum amount of memory allowed for this container. Setting this to 0 will allow unlimited memory usage.",
                 "swap": "Swap (MiB)",
@@ -3612,6 +4703,10 @@
                 "message": "Your panel is currently using the default featherpanel.mythical.systems URL. This will cause security issues and breaks authentication.",
                 "remind_me": "Remind Me Later",
                 "update_settings": "Update Settings"
+            },
+            "eula": {
+                "title": "End User License Agreement",
+                "subtitle": "Terms and conditions for using FeatherPanel"
             }
         },
         "welcome": {
@@ -3626,7 +4721,9 @@
             "total_servers": "Total Servers",
             "total_users": "Total Users",
             "total_nodes": "Total Nodes",
-            "total_spells": "Total Spells"
+            "total_spells": "Total Spells",
+            "total_vm_nodes": "Total VDS Nodes",
+            "total_vm_instances": "Total VM Instances"
         },
         "cron": {
             "title": "Cron Status",
@@ -3658,6 +4755,22 @@
                 "improved": "Improved",
                 "updated": "Updated",
                 "removed": "Removed"
+            },
+            "update_instructions": {
+                "title": "Update FeatherPanel",
+                "description": "To update your FeatherPanel installation, please log in to your server via SSH and run one of the following commands:",
+                "ssh_method": "Using SSH:",
+                "curl_method": "Using cURL:",
+                "follow_process": "Follow the update process on your server after running the command.",
+                "close": "Close",
+                "copy_command": "Copy Command",
+                "copied": "Command copied to clipboard",
+                "steps": {
+                    "login": "Login to your server via SSH",
+                    "run_command": "Run one of the commands above",
+                    "follow_prompts": "Follow the on-screen prompts",
+                    "complete": "The update will complete automatically"
+                }
             },
             "integrity_coming_soon": "This feature is coming soon in a future update."
         },
@@ -3952,7 +5065,30 @@
                 "available": "Available Plugins",
                 "clear_search": "Clear Search",
                 "no_results": "No results found",
-                "featured": "Featured"
+                "featured": "Featured",
+                "install_success": "Successfully installed {identifier}",
+                "install_failed": "Failed to install plugin",
+                "queue": {
+                    "title": "Download List",
+                    "subtitle": "The following plugins were added to the download list. Click download to install them now.",
+                    "add_to_list": "Add to download list",
+                    "in_list": "In download list",
+                    "remove": "Remove",
+                    "clear": "Clear list",
+                    "download_now": "Download now",
+                    "downloading": "Downloading...",
+                    "install_success_single": "Installed 1 plugin successfully",
+                    "install_success_multiple": "Installed {count} plugins successfully",
+                    "install_failed": "Failed to install selected plugins",
+                    "install_failed_single": "Failed to install {identifier}"
+                },
+                "repo": {
+                    "title": "Plugin Repositories",
+                    "description": "Manage where plugins are downloaded from. This is currently locked to the official FeatherPanel repository.",
+                    "official_name": "FeatherPanel Official Repository",
+                    "official_badge": "Official",
+                    "locked_notice": "This repository is managed by FeatherPanel. Adding more repositories will be available soon."
+                }
             },
             "spells": {
                 "title": "Spells Marketplace",
@@ -3960,6 +5096,14 @@
                 "loading_error": "Failed to load online spells",
                 "install_error": "Failed to install spell",
                 "select_realm_error": "Please select a realm before installing",
+                "install_success": "Successfully installed {identifier}",
+                "pterodactyl_banner": {
+                    "title": "Pterodactyl Game Eggs Store",
+                    "description": "FeatherPanel uses the official Pterodactyl eggs repository. Browse and install game server configurations that are verified and maintained by the Pterodactyl community.",
+                    "powered_by": "Powered by Pterodactyl Official Eggs",
+                    "view_github": "Browse Eggs",
+                    "learn_more": "Learn More"
+                },
                 "online_banner": {
                     "title": "Have some spells to share?",
                     "description": "Publish your creations to the community. Download your spell and head over to our cloud platform. Our team aims to review and publish within 48 hours.",
@@ -3971,22 +5115,32 @@
                 "loading": "Loading online spells...",
                 "grid": {
                     "verified": "Verified",
+                    "pterodactyl_verified": "Pterodactyl Verified",
                     "unverified_warning": "Unverified spell - review source before installing",
+                    "external_source": "This spell is from an external source and may not be verified by FeatherPanel",
                     "install": "Install",
                     "no_description": "No description available"
                 },
                 "dialog": {
-                    "title": "Install Spell",
+                    "title": "Install Game Server Egg",
                     "realm": "Select Realm *",
                     "realm_help": "Select the realm where this spell will be installed.",
                     "install": "Install",
                     "installing": "Installing...",
+                    "community_egg_title": "Pterodactyl Community Egg",
+                    "community_egg_desc": "This egg is maintained by the Pterodactyl community and is regularly updated.",
                     "unverified_warning": "Unverified Spell",
                     "unverified_desc": "This spell is not verified. Installing unverified spells can be unsafe. Please review the source code before installing.",
                     "already_installed_title": "Spell Already Installed",
                     "already_installed_desc": "You already have this spell installed. Installing it again will create another instance."
                 },
                 "help": {
+                    "official_repo_title": "Official Repository",
+                    "official_repo_desc": "All game server eggs are sourced from the official Pterodactyl repository, ensuring quality and compatibility.",
+                    "easy_install_title": "Easy Installation",
+                    "easy_install_desc": "Install game servers with a single click. All configurations and dependencies are handled automatically.",
+                    "community_title": "Community Maintained",
+                    "community_desc": "Eggs are actively maintained by the Pterodactyl community with regular updates and improvements.",
                     "repo_title": "Online Repository",
                     "repo_desc": "Browse community-created spells from our online repository. Install directly from this page with a single click.",
                     "install_title": "Install Spells",
@@ -4152,7 +5306,10 @@
             "clear_filters": "Clear Filters",
             "back_to_list": "Back to Users",
             "filters": {
-                "all_roles": "All Roles"
+                "all_roles": "All Roles",
+                "any_status": "Any Status",
+                "status_active": "Only active users",
+                "status_banned": "Only banned users"
             },
             "common": {},
             "badges": {
@@ -4191,6 +5348,7 @@
                 "badges": {},
                 "tabs": {
                     "servers": "Servers",
+                    "vds": "VDS",
                     "activities": "Activities",
                     "mails": "Mails"
                 },
@@ -4221,6 +5379,17 @@
                 },
                 "actions": {
                     "title": "Actions",
+                    "email": {
+                        "title": "Direct Email",
+                        "compose": "Compose email",
+                        "description": "Send an email directly to this user. HTML is supported in the body.",
+                        "to": "To",
+                        "subject": "Subject",
+                        "subject_placeholder": "Enter subject",
+                        "body": "HTML Body",
+                        "body_placeholder": "<h1>Hello</h1><p>Your message here</p>",
+                        "send": "Send Email"
+                    },
                     "sso": {
                         "title": "Single Sign-On",
                         "generate": "Generate SSO Link"
@@ -4233,7 +5402,18 @@
                     "created": "Created",
                     "actions": "Actions",
                     "offline": "Offline",
-                    "no_servers": "No servers found for this user."
+                    "no_servers": "No servers found for this user.",
+                    "viewAll": "View all servers"
+                },
+                "vds": {
+                    "title": "Owned VDS",
+                    "viewAll": "View all VDS",
+                    "hostname": "Hostname",
+                    "status": "Status",
+                    "ip": "IP",
+                    "node": "Node",
+                    "actions": "Actions",
+                    "empty": "This user does not own any VDS."
                 },
                 "activities": {
                     "title": "Activities",
@@ -4253,6 +5433,18 @@
                     "no_mails": "No mails found."
                 }
             },
+            "servers": {
+                "title": "User Servers",
+                "description": "Servers owned by {{username}}",
+                "descriptionGeneric": "Servers owned by this user",
+                "backToUser": "Back to user",
+                "noServers": "No servers",
+                "noServersDescription": "This user does not own any servers.",
+                "vdsTitle": "Owned VDS",
+                "vdsViewAll": "View all VDS",
+                "noVds": "No VDS",
+                "noVdsDescription": "This user does not own any VDS instances."
+            },
             "messages": {
                 "created": "User created successfully",
                 "updated": "User updated successfully",
@@ -4263,6 +5455,7 @@
                 "discord_unlinked": "Discord unlinked successfully",
                 "sso_generated": "SSO login link generated",
                 "sso_copied": "SSO link copied to clipboard",
+                "email_sent": "Email queued successfully",
                 "create_failed": "Failed to create user",
                 "update_failed": "Failed to update user",
                 "delete_failed": "Failed to delete user",
@@ -4271,6 +5464,9 @@
                 "discord_failed": "Failed to unlink Discord",
                 "sso_failed": "Failed to generate SSO token",
                 "sso_copy_failed": "Failed to copy SSO link",
+                "send_email_required": "Subject and body are required",
+                "email_send_failed": "Failed to send email",
+                "sending_email": "Sending...",
                 "discord_confirm": "Are you sure you want to unlink Discord from this user?",
                 "ban_confirm": "Are you sure you want to ban/unban this user?",
                 "fetch_failed": "Failed to fetch users",
@@ -4740,6 +5936,9 @@
                 "host": "Host",
                 "host_placeholder": "localhost",
                 "host_help": "Enter the hostname or IP address of the database server.",
+                "database_subdomain": "Database Hostname (optional)",
+                "database_subdomain_placeholder": "db1.node.domain.de",
+                "database_subdomain_help": "Used for user-facing database credentials. Leave empty to use the database host.",
                 "port": "Port",
                 "port_placeholder": "3306",
                 "port_help": "Default ports: MySQL/MariaDB (3306), PostgreSQL (5432)",
@@ -5057,7 +6256,7 @@
                     "title": "Update Plugin",
                     "available": "Update Available",
                     "version_info": "Update from {current} to {latest}",
-                    "backup_warning": "It's recommended to backup your plugin configuration and data before updating. The update will replace the current plugin files."
+                    "backup_warning": "Updating can wipe custom translations, installed plugins, and custom modifications. Add-ons purchased from the official store can be bulk reinstalled after the update. If you developed custom add-ons yourself, back them up before continuing."
                 },
                 "reinstall": {
                     "title": "Select Plugins to Reinstall",
@@ -5382,6 +6581,7 @@
             "subtitle": "Manage email templates for your system.",
             "create": "Template",
             "send_mass_email": "Send Mass Email",
+            "send_test_email": "Send Test Email",
             "search_placeholder": "Search by name or subject...",
             "no_results": "No mail templates found.",
             "form": {
@@ -5393,13 +6593,18 @@
                 "preview_description": "Preview for template: {name}",
                 "mass_email_title": "Send Mass Email",
                 "mass_email_description": "Create and send HTML emails to all users in your system.",
+                "test_email_title": "Send Test Email",
+                "test_email_description": "Send a test email to verify your mail configuration and template rendering.",
+                "test_email_address": "Recipient Email Address",
+                "test_email_help": "Enter the email address where you want to receive the test email.",
                 "name": "Name",
                 "subject": "Subject",
                 "body": "Body (HTML)",
                 "html_help": "You can use HTML tags like <h1>, <p>, <strong>, <em>, <a>, etc.",
                 "submit_create": "Create Template",
                 "submit_update": "Update Template",
-                "send": "Send to All Users"
+                "send": "Send to All Users",
+                "send_test": "Send Test Email"
             },
             "messages": {
                 "fetch_failed": "Failed to fetch mail templates.",
@@ -5411,7 +6616,11 @@
                 "mass_email_queued": "Mass email queued successfully! {count} emails queued.",
                 "mass_email_failed": "Failed to queue mass email.",
                 "mass_email_warning_title": "Important Notice",
-                "mass_email_warning": "This will send emails to ALL users with valid email addresses in your system. Make sure your content is appropriate and test thoroughly before sending."
+                "mass_email_warning": "This will send emails to ALL users with valid email addresses in your system. Make sure your content is appropriate and test thoroughly before sending.",
+                "test_email_sent": "Test email queued successfully! Check your inbox shortly.",
+                "test_email_failed": "Failed to send test email.",
+                "test_email_info_title": "Test Email",
+                "test_email_info": "The test email will be queued and sent through your configured SMTP server. Subject will be prefixed with [TEST]."
             },
             "help": {
                 "what_is": {
@@ -5716,6 +6925,270 @@
     },
     "public": {
         "redirect": {}
+    },
+    "vds": {
+        "activities": {
+            "description": "All power, subuser and console actions for this VDS instance.",
+            "filter": {
+                "reinstall": "Reinstall events"
+            }
+        },
+        "console": {
+            "title": "VDS Console",
+            "loading": "Loading VDS instance...",
+            "not_found_title": "VDS Not Found",
+            "not_found_description": "This VDS instance does not exist or you do not have access.",
+            "vnc_console": "VNC Console",
+            "status": {
+                "running": "Running",
+                "stopped": "Stopped",
+                "starting": "Starting",
+                "stopping": "Stopping",
+                "suspended": "Suspended",
+                "creating": "Creating",
+                "reinstalling": "Reinstalling",
+                "unknown": "Unknown"
+            },
+            "power": {
+                "start": "Start",
+                "stop": "Stop",
+                "reboot": "Reboot",
+                "shutdown": "Shutdown",
+                "kill": "Kill"
+            },
+            "performance": {
+                "cpu": "CPU Usage",
+                "memory": "Memory Usage",
+                "network_rx": "Network Inbound",
+                "network_tx": "Network Outbound",
+                "disk": "Disk Usage",
+                "uptime": "Uptime",
+                "history": "last 60 seconds",
+                "network": "Network"
+            },
+            "details": {
+                "instance_details": "Instance Details",
+                "hostname": "Hostname",
+                "vmid": "VMID",
+                "ip": "IP Address",
+                "status": "Status",
+                "type": "Type",
+                "node": "Node",
+                "plan": "Plan",
+                "role": "Role",
+                "role_owner": "Owner",
+                "role_subuser": "Subuser"
+            },
+            "password": {
+                "title": "Access Password",
+                "description": "This is the latest password the panel has for this VDS.",
+                "change_asap": "Change this password as soon as possible after signing in."
+            },
+            "console_access": {
+                "title": "Console Access",
+                "no_access_title": "No Console Access",
+                "no_access_description": "Subusers do not currently have console access to VDS instances.",
+                "offline_title": "VDS is Offline",
+                "offline_description": "Start the VDS instance to access the VNC console.",
+                "start_instance": "Start Instance",
+                "ready_title": "VNC Console Ready",
+                "ready_description": "Click below to open the graphical console in a new tab.",
+                "open_button": "Open VNC Console",
+                "open_hint": "Opens in a new browser tab via Proxmox noVNC"
+            },
+            "toast": {
+                "power_completed": "Power action \"{action}\" completed",
+                "task_queued": "Task added to queue",
+                "power_timeout": "Power action timed out",
+                "power_failed": "Power action failed",
+                "vnc_wss": "VNC WSS: {url}",
+                "vnc_failed": "Failed to get VNC ticket"
+            }
+        },
+        "subusers": {
+            "title": "Subuser Management",
+            "description": "Manage user access and permissions for this VDS instance.",
+            "add": "Add Subuser",
+            "email_placeholder": "User email address",
+            "permissions": {
+                "power": {
+                    "label": "Power Control",
+                    "description": "Start, stop, and reboot the VDS instance."
+                },
+                "console": {
+                    "label": "Console Access",
+                    "description": "Open the VNC console for this VDS instance."
+                },
+                "reinstall": {
+                    "label": "Reinstall OS",
+                    "description": "Reinstall the VDS instance OS from available templates."
+                },
+                "settings": {
+                    "label": "Settings Access",
+                    "description": "Manage instance settings and cloud-init parameters."
+                },
+                "activity.read": {
+                    "label": "View Activities",
+                    "description": "View the activity log for this VDS instance."
+                }
+            }
+        },
+        "networking": {
+            "title": "Networking",
+            "description": "View assigned IPs, interfaces, and DNS settings.",
+            "loading": "Loading networking…",
+            "primary_ip_label": "Primary IP",
+            "assigned_ips": {
+                "title": "Assigned IPs",
+                "description": "These addresses are currently attached to your VDS instance.",
+                "primary_badge": "Primary",
+                "cidr": "CIDR",
+                "gateway": "Gateway",
+                "bridge": "Bridge",
+                "empty": "No assigned IPs were found for this VDS."
+            },
+            "dns": {
+                "title": "DNS",
+                "description": "Nameserver and search domain settings for this instance.",
+                "nameserver_label": "Nameserver",
+                "nameserver_placeholder": "1.1.1.1 8.8.8.8",
+                "searchdomain_label": "Search domain",
+                "searchdomain_placeholder": "example.com",
+                "apply_button": "Apply",
+                "apply_success": "DNS updated.",
+                "apply_failed": "Failed to update DNS.",
+                "readonly_notice": "You can view DNS settings here, but you do not have permission to change them."
+            },
+            "notes": {
+                "title": "How It Works",
+                "qemu": "Additional IPs are provisioned as extra virtual NICs with matching cloud-init ipconfig entries.",
+                "lxc": "Additional IPs are provisioned as extra container network interfaces such as net1, net2, and so on."
+            }
+        },
+        "suspended_banner": {
+            "title": "This VDS is suspended",
+            "message": "Access to this VDS has been temporarily restricted. Contact support for details."
+        },
+        "settings": {
+            "title": "VDS Settings",
+            "reinstall": {
+                "title": "Reinstall Operating System",
+                "description": "This will permanently wipe the current OS and reinstall from a chosen template. All data on the VDS will be lost.",
+                "button": "Begin Reinstall",
+                "confirm_title": "Confirm Reinstall",
+                "confirm_desc": "This action is irreversible. All data on this VDS will be destroyed.",
+                "password_notice": "After reinstall, you will receive the password by email or you can view it on the main VDS page. Please change this password ASAP.",
+                "templates_loading": "Loading templates...",
+                "templates_none": "No {template_type} templates available for this VDS. Contact your administrator.",
+                "confirm_body_prefix": "You are about to reinstall ",
+                "confirm_body_on": " on ",
+                "confirm_body_after_hostname": ". All existing data will be permanently erased.",
+                "cloud_init_credentials_optional": "Cloud-Init Credentials (optional)",
+                "cloud_init": {
+                    "username_label": "Username",
+                    "username_placeholder": "e.g. ubuntu",
+                    "password_label": "Password",
+                    "password_placeholder": "Leave blank to keep existing",
+                    "ssh_keys_label": "SSH Public Keys",
+                    "ssh_keys_placeholder": "Paste SSH public key(s) here..."
+                },
+                "cancel_button": "Cancel",
+                "confirm_button": "Confirm Reinstall"
+            },
+            "hardware": {
+                "title": "QEMU Hardware (EFI / TPM)",
+                "description": "Enable UEFI (EFI disk) and TPM 2.0 state disk for this QEMU VM.",
+                "loading": "Loading hardware…",
+                "bios_label": "BIOS / Firmware",
+                "bios_seabios": "Legacy (SeaBIOS)",
+                "bios_ovmf": "UEFI (OVMF)",
+                "efi_label": "Enable EFI disk",
+                "efi_help": "Adds efidisk0 (UEFI firmware required for TPM).",
+                "tpm_label": "Enable TPM 2.0",
+                "tpm_help": "Adds tpmstate0 (v2.0). Usually requires EFI/OVMF.",
+                "disable_serial_label": "Disable serial port (Windows)",
+                "disable_serial_help": "Removes `serial0` so the console renders graphical output instead of serial.",
+                "apply_button": "Apply",
+                "apply_success": "Hardware updated successfully.",
+                "apply_failed": "Failed to update hardware."
+            },
+            "iso": {
+                "title": "ISO Mount",
+                "description": "Upload an ISO (browser -> panel -> Proxmox) or use ISO URL (Proxmox downloads directly), then boot this VM from it.",
+                "loading": "Loading…",
+                "mode_upload": "Upload ISO",
+                "mode_url": "ISO URL",
+                "current_label": "Current ISO",
+                "mounted_as": "Mounted as",
+                "none": "No ISO mounted.",
+                "unmount_button": "Unmount ISO",
+                "storage_label": "ISO Storage",
+                "no_storages": "No ISO storage available",
+                "file_label": "ISO File",
+                "url_label": "ISO URL",
+                "url_placeholder": "https://example.com/my.iso",
+                "upload_button": "Upload & Mount",
+                "fetch_button": "Fetch & Mount",
+                "upload_progress_label": "Upload: {percent}%",
+                "toast_mounted": "ISO mounted successfully.",
+                "toast_mount_failed": "Failed to mount ISO.",
+                "toast_reboot_hint": "Reboot the VM to boot from the ISO.",
+                "toast_unmounted": "ISO unmounted successfully.",
+                "toast_unmount_failed": "Failed to unmount ISO.",
+                "toast_fetch_failed": "Failed to fetch ISO.",
+                "errors": {
+                    "iso_file_required": "Select an ISO file",
+                    "storage_required": "Select an ISO storage",
+                    "url_required": "Enter an ISO URL"
+                }
+            },
+            "network": {
+                "title": "Network & DNS",
+                "description": "Update DNS settings for this VDS instance.",
+                "loading": "Loading…",
+                "ip_label": "Primary IP",
+                "nameserver_label": "Nameserver",
+                "nameserver_placeholder": "1.1.1.1 8.8.8.8",
+                "searchdomain_label": "Search domain",
+                "searchdomain_placeholder": "example.com",
+                "apply_button": "Apply",
+                "apply_success": "Network/DNS updated.",
+                "apply_failed": "Failed to update network/DNS",
+                "select_ip": "Select an IP"
+            },
+            "networking": {
+                "title": "Networking",
+                "description": "View assigned IPs, interfaces, and DNS settings.",
+                "loading": "Loading networking…",
+                "primary_ip_label": "Primary IP",
+                "assigned_ips": {
+                    "title": "Assigned IPs",
+                    "description": "These addresses are currently attached to your VDS instance.",
+                    "primary_badge": "Primary",
+                    "cidr": "CIDR",
+                    "gateway": "Gateway",
+                    "bridge": "Bridge",
+                    "empty": "No assigned IPs were found for this VDS."
+                },
+                "dns": {
+                    "title": "DNS",
+                    "description": "Nameserver and search domain settings for this instance.",
+                    "nameserver_label": "Nameserver",
+                    "nameserver_placeholder": "1.1.1.1 8.8.8.8",
+                    "searchdomain_label": "Search domain",
+                    "searchdomain_placeholder": "example.com",
+                    "apply_button": "Apply",
+                    "apply_success": "DNS updated.",
+                    "apply_failed": "Failed to update DNS.",
+                    "readonly_notice": "You can view DNS settings here, but you do not have permission to change them."
+                },
+                "notes": {
+                    "title": "How It Works",
+                    "qemu": "Additional IPs are provisioned as extra virtual NICs with matching cloud-init ipconfig entries.",
+                    "lxc": "Additional IPs are provisioned as extra container network interfaces such as net1, net2, and so on."
+                }
+            }
+        }
     },
     "chatbot": {
         "title": "FeatherPanel AI",
