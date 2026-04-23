@@ -74,7 +74,22 @@
             "copied": "Copied to clipboard!",
             "setting_up": "Setting up two-factor authentication..."
         },
-        "logout": {},
+        "logout": {
+            "title": "Logging out...",
+            "subtitle": "Please wait while we securely log you out and clean up your session.",
+            "cleaning_up": "Cleaning up...",
+            "taking_too_long": "Taking longer than expected?",
+            "continue_to_login": "Continue to Login"
+        },
+        "verify_email": {
+            "verifying": "Verifying your email...",
+            "missing_token": "Missing verification token.",
+            "success": "Email verified successfully.",
+            "failed": "Failed to verify email.",
+            "success_title": "Email verified",
+            "failed_title": "Verification failed",
+            "continue_to_login": "Continue to login"
+        },
         "loginSuccess": "Login successful",
         "ssoLoggingIn": "Logging in via SSO...",
         "ssoPleaseWait": "Please wait while we log you in...",
@@ -223,6 +238,12 @@
         "running_on": "Running on {name} {version}",
         "copyright": "{company}"
     },
+    "maintenance": {
+        "title": "System Maintenance",
+        "message": "We are currently upgrading our systems to provide you with a better experience. We'll be back shortly.",
+        "status": "In Progress",
+        "check_again": "Check Again"
+    },
     "validation": {
         "required": "This field is required",
         "email": "Please enter a valid email address",
@@ -287,6 +308,9 @@
             "create_first": "Create your first resource to get started",
             "loading": "Loading resources..."
         },
+        "favorite_servers": {
+            "title": "Favorite servers"
+        },
         "announcements": {},
         "tickets": {
             "title": "Recent Support Tickets",
@@ -318,6 +342,39 @@
             "of": "of",
             "attachments": "Attachments",
             "no_articles_desc": "No articles found in this category."
+        },
+        "recent_mails": {
+            "title": "Recent mail",
+            "subtitle": "Latest system emails sent to you",
+            "view_all": "View all mail",
+            "open_mail_tab": "Open mail inbox"
+        },
+        "layout": {
+            "customize": "Customize",
+            "customize_layout": "Customize layout",
+            "stop_customizing": "Stop customizing",
+            "stop": "Done",
+            "swap_columns": "Swap columns",
+            "hero_bottom": "Banner at bottom",
+            "hero_top": "Banner at top",
+            "move_up": "Move up",
+            "move_down": "Move down",
+            "remove_block": "Remove from layout",
+            "add_to_main": "Add to main column",
+            "add_to_side": "Add to side column",
+            "available_widgets": "Available widgets",
+            "reset": "Reset layout",
+            "feature_disabled": "This section is turned off for your panel. Remove it from the layout or ask an administrator to enable it.",
+            "block_labels": {
+                "hero": "Welcome banner",
+                "announcements": "Announcements",
+                "recent_mails": "Recent mail",
+                "resources": "Resources",
+                "tickets": "Support tickets",
+                "knowledgebase": "Knowledge base",
+                "profile": "Profile card",
+                "activity": "Recent activity"
+            }
         }
     },
     "account": {
@@ -444,7 +501,53 @@
                 "title": "Important Information",
                 "persistent": "API keys are persistent and don't expire",
                 "accessScope": "Keys have full access to your account",
-                "security": "Keep your private keys secure and never share them"
+                "security": "Keep your private keys secure and never share them",
+                "ipRestriction": "You can lock each key to specific IP addresses or CIDR ranges; requests from other IPs are blocked, with optional email alerts when mail is enabled."
+            },
+            "allowedIpsLabel": "Allowed IP addresses",
+            "allowedIpsHelp": "One IPv4/IPv6 address or CIDR per line or comma-separated (e.g. 203.0.113.10 or 10.0.0.0/24). Leave empty to allow any IP.",
+            "allowedIpsPlaceholder": "203.0.113.10\n198.51.100.0/24",
+            "notifyForeignIp": "Email me if this key is used from another IP",
+            "notifyForeignIpHelp": "Sends one email per 30 minutes at most when a request is blocked because the client IP is not allowed. Only works if the panel administrator has enabled outgoing mail (SMTP).",
+            "notifyEnabledHint": "Email notifications are enabled for blocked (non-allowed) IP attempts.",
+            "ipRestrictedLabel": "This key is restricted to specific IP addresses.",
+            "badges": {
+                "ipLocked": "IP restricted"
+            },
+            "oauth2": {
+                "consentButton": "OAuth2 Consent",
+                "prepareLoading": "Preparing authorization request...",
+                "initFailedTitle": "Authorization failed",
+                "initFailedDefault": "Unable to prepare the authorization request.",
+                "noRequestTitle": "OAuth2 API Consent",
+                "noRequestDescription": "Open this page through an authorization URL from a third-party app.",
+                "noRequestWarningTitle": "No authorization request was provided.",
+                "noRequestWarningBody": "Add query parameters like name and callbackurl or start from your app connect button.",
+                "returnToApiKeys": "Return to API Keys",
+                "openPlayground": "Open OAuth2 Playground",
+                "retry": "Retry",
+                "playgroundTitle": "OAuth2 Request Playground",
+                "playgroundDescription": "Build and validate a request from the user side before opening the consent screen.",
+                "authorizeTitle": "Authorize {app}",
+                "authorizeSubtitle": "Requests full account API access",
+                "warning": "Warning: this app will get full access to your account and servers using generated API credentials. Only approve apps you trust.",
+                "requestName": "Request name",
+                "description": "Description",
+                "callbackUrl": "Callback URL",
+                "allowedIps": "Allowed IPs",
+                "allowedIpsAny": "No restriction (any IP)",
+                "foreignIpAlert": "Alert on foreign IP attempts",
+                "enabled": "Enabled",
+                "disabled": "Disabled",
+                "deny": "Deny",
+                "authorize": "Authorize App",
+                "processing": "Processing...",
+                "approveFailed": "Failed to approve the request.",
+                "denyFailed": "Failed to deny the request.",
+                "serverAuthorized": "App authorized and credentials delivered to callback endpoint.",
+                "serverAuthorizedTitle": "Application authorized",
+                "serverAuthorizedDescription": "The app has been authorized successfully. Return to the app to continue.",
+                "serverDenied": "Authorization denied and callback endpoint notified."
             },
             "modalWarning": {},
             "statuses": {
@@ -568,6 +671,8 @@
         "liveConnected": "Live",
         "live": "LIVE",
         "removeFromFolder": "Remove from Folder",
+        "favorite_add": "Add to favorites",
+        "favorite_remove": "Remove from favorites",
         "noFolders": "No folders created",
         "sort": {
             "name": "Name",
@@ -770,6 +875,7 @@
         "failedToSendReply": "Failed to send reply",
         "messageDeleted": "Message deleted",
         "failedToDeleteMessage": "Failed to delete message",
+        "newMessages": "{count} new",
         "deleteMessage": "Delete Message",
         "deleteMessageConfirm": "Are you sure you want to delete this message?",
         "details": "Ticket Details",
@@ -821,7 +927,34 @@
         }
     },
     "appearance": {
+        "settingsMenuTitle": "Appearance",
+        "settingsMenuSubtitle": "Theme, background, accent, and layout",
+        "fontFamilyTitle": "Font",
         "language": "Language",
+        "navbarHoverReveal": {
+            "title": "Top bar (desktop)",
+            "off": "Always visible",
+            "on": "Reveal on hover",
+            "compactOff": "Visible",
+            "compactOn": "Hover",
+            "onHint": "Large screens: bar stays tucked up until you move the pointer to the top edge, then it drops down."
+        },
+        "navbarSticky": {
+            "title": "Top bar position",
+            "on": "Sticky",
+            "off": "Scroll with page",
+            "onHint": "Keeps the top bar pinned at the top while you scroll.",
+            "offHint": "Top bar scrolls away with the page content."
+        },
+        "chromeLayout": {
+            "title": "Shell layout",
+            "modern": "Floating (modern)",
+            "classic": "Classic",
+            "compactModern": "Floating",
+            "compactClassic": "Classic",
+            "modernHint": "Floating top bar and glass sidebar rail.",
+            "classicHint": "Full-width top bar and traditional sidebar."
+        },
         "accentColor": "Accent Color",
         "theme": {
             "light": "Light Mode",
@@ -920,6 +1053,7 @@
             "vmInstances": "VM Instances",
             "nodeDatabases": "Node Databases",
             "nodeStatus": "Node Status",
+            "mounts": "Mounts",
             "subdomains": "Subdomains",
             "realms": "Realms (Nests)",
             "spells": "Spells (Eggs)",
@@ -937,6 +1071,7 @@
             "oidcProviders": "OIDC / SSO Providers",
             "rateLimits": "Rate Limits",
             "databaseManagement": "Database Management",
+            "storageSense": "Storage Sense",
             "pterodactylImporter": "Pterodactyl Importer",
             "apiKeys": "API Keys",
             "plugins": "Plugins",
@@ -971,9 +1106,37 @@
         "adminArea": "Admin Area",
         "adminPanelTooltip": "Admin Panel",
         "openSidebar": "Open sidebar",
+        "toggleSidebar": "Toggle sidebar width",
+        "collapseSidebar": "Collapse",
+        "expandSidebar": "Expand",
         "openUserMenu": "Open user menu",
         "signOut": "Sign out",
-        "user": "User"
+        "user": "User",
+        "noRole": "No role assigned",
+        "menuAccount": "Your account",
+        "copyEmail": "Copy email",
+        "showEmail": "Show email",
+        "hideEmail": "Hide email",
+        "poweredBy": "powered by featherpanel",
+        "localStorageMenu": "Browser storage",
+        "localStorageDefaultAppName": "Hosting panel",
+        "localStorageTitle": "{appName} — browser storage",
+        "localStorageDesc": "Values your browser keeps for {appName} (layouts, themes, sidebar, and similar). Use this to inspect, copy, remove one key, or clear everything listed. Other browser data may still exist outside this list.",
+        "localStorageFootnote": "Translation caches and the public app settings cache are not shown here on purpose (large or refetched automatically).",
+        "localStorageSearch": "Search keys or values…",
+        "localStorageEmpty": "No matching keys.",
+        "localStorageRefresh": "Reload list",
+        "localStorageSummary": "{keys} keys · ~{chars} characters",
+        "localStorageChars": "{n} characters",
+        "localStorageCopy": "Copy value",
+        "localStorageDelete": "Remove key",
+        "localStorageExpand": "Show full value",
+        "localStorageCollapse": "Collapse value",
+        "localStorageClearAll": "Clear all listed keys",
+        "localStorageDeleted": "Removed “{key}”.",
+        "localStorageClearedCount": "Removed {count} keys.",
+        "localStorageConfirmClearTitle": "Clear all keys listed for {appName}?",
+        "localStorageConfirmClearDesc": "This deletes every key you see in this list for this site only. You stay signed in, but UI preferences may reset. This cannot be undone."
     },
     "features": {
         "eula": {
@@ -1155,6 +1318,8 @@
         "refresh": "Refresh",
         "backupLimitReached": "Backup limit reached",
         "backupLimitReachedDescription": "You have reached the maximum number of backups for this server (limit: {limit}). Please delete some backups to create a new one.",
+        "fifoRollingTitle": "FIFO rolling backups enabled",
+        "fifoRollingDescription": "When you reach the backup limit ({limit}), the panel removes the oldest unlocked backup before creating a new one. Pair this with a schedule (for example every 24 hours) to keep a rolling window of about {limit} recent backups.",
         "createBackup": "Create Backup",
         "createBackupDescription": "Create a new backup of your server data.",
         "name": "Backup Name",
@@ -1986,7 +2151,15 @@
         "serverDeleted": "Server deleted successfully",
         "deleteError": "Failed to delete server",
         "accessDenied": "Access Denied",
-        "errorTitle": "Error"
+        "errorTitle": "Error",
+        "backupPolicyTitle": "Backup policy",
+        "backupPolicyDescription": "Adjust how backups behave when the limit is reached (hard stop vs FIFO rotation). The maximum number of backups is set by your host. Your host may allow or disallow owner changes here.",
+        "backupLimitReadOnlyLabel": "Maximum backups (host limit)",
+        "backupLimitReadOnlyHelp": "This value is set by an administrator and cannot be changed here.",
+        "backupPolicySave": "Save backup policy",
+        "backupPolicySaveSuccess": "Backup policy updated",
+        "backupPolicySaveError": "Failed to update backup policy",
+        "backupPolicyDisabled": "Backup policy changes are disabled by the administrator."
     },
     "files": {
         "title": "File Manager",
@@ -2039,7 +2212,11 @@
             "upload_folder_error": "Folder upload failed",
             "uploading_files_progress": "Uploading {current} of {total} files",
             "drop_to_upload": "Drop to Upload",
-            "drop_description": "Release your files to start uploading to"
+            "drop_description": "Release your files to start uploading to",
+            "moving": "Moving {count} item(s)...",
+            "moved": "Moved {count} item(s)",
+            "move_error": "Failed to move files",
+            "move_into_self_error": "Cannot move a folder into itself"
         },
         "editor": {
             "title": "Editing: {file}",
@@ -2057,7 +2234,8 @@
             "loading_title": "Loading File...",
             "load_timeout": "File loading timed out. The file may be too large or the server is taking too long to respond.",
             "unsaved_prompt": "You have unsaved changes in this file. Are you sure you want to leave without saving?",
-            "window_title": "File Editor"
+            "window_title": "File Editor",
+            "binary_not_supported": "This file type cannot be opened in the text editor. Download it from the file manager instead."
         },
         "search": {
             "files_placeholder": "Filter files in this folder...",
@@ -2844,6 +3022,92 @@
                 "clear_failed": "Failed to clear logs"
             }
         },
+        "storage_sense": {
+            "title": "Storage Sense",
+            "subtitle": "Audit database history tables, preview reclaimable rows, and run safe retention purges.",
+            "warning": "This permanently deletes rows. Take a database backup first. Wings backups and server files are not touched — only panel MySQL data you select.",
+            "retention_label": "Retention period (days)",
+            "retention_hint": "Rows older than this age are counted as eligible (7–3650). SSO tokens use expiry time instead.",
+            "retention_presets": "Quick presets",
+            "refresh": "Refresh",
+            "loading": "Loading…",
+            "load_failed": "Failed to load Storage Sense data.",
+            "table": "Table",
+            "rows_total": "Total rows",
+            "rows_purgeable": "Eligible",
+            "approx_size": "Approx. size",
+            "share_of_db": "of tracked tables",
+            "not_installed": "Not installed",
+            "purge": "Purge",
+            "no_edit_permission": "View only: grant Storage Sense manage permission to run purges.",
+            "purge_confirm_title": "Delete old rows?",
+            "purge_confirm_desc": "Permanently remove {count} rows from {label} (older than {days} days).",
+            "purge_confirm_desc_sso": "Permanently remove {count} expired SSO tokens from {label}. Retention days do not apply.",
+            "purge_success": "Removed {count} rows.",
+            "purge_failed": "Purge failed.",
+            "purge_none": "Nothing matched this rule.",
+            "stats_tables": "Tracked tables",
+            "stats_total_rows": "Total rows",
+            "stats_purgeable": "Purgeable rows",
+            "stats_db_bytes": "Tracked data (approx.)",
+            "disk_card_title": "Panel log files",
+            "disk_card_desc": "PHP / app logs under storage/logs. Truncate from the Log viewer when needed.",
+            "open_logs": "Open log viewer",
+            "estimate_note": "Sizes come from MySQL information_schema (data + indexes). Run ANALYZE TABLE occasionally for accuracy.",
+            "search_placeholder": "Filter by name or table…",
+            "select_visible": "Select eligible on page",
+            "clear_selection": "Clear",
+            "batch_purge": "Purge selected",
+            "batch_selected": "{count} selected",
+            "batch_confirm_title": "Purge multiple targets?",
+            "batch_confirm_desc": "Run retention purge on {count} targets for rows older than {days} days. Expired SSO tokens use their own rule.",
+            "batch_success": "Batch complete: {count} rows removed total.",
+            "batch_done_with_skips": "Removed {count} rows. Some targets were unavailable or had nothing to delete.",
+            "copy_summary": "Copy JSON summary",
+            "select": "Select",
+            "tracked_percent": "{percent}% tracked",
+            "eligible_percent": "{percent}% eligible",
+            "retention_na": "Expiry-based",
+            "progress_legend": "Eligible share of table",
+            "categories": {
+                "user_activity": {
+                    "title": "User activity log",
+                    "description": "Account security and action history."
+                },
+                "server_activity": {
+                    "title": "Game server activity",
+                    "description": "Panel-side server events and console-related history."
+                },
+                "vm_instance_activity": {
+                    "title": "VDS / VM activity",
+                    "description": "Virtual instance lifecycle and panel actions."
+                },
+                "vm_panel_logs": {
+                    "title": "VDS provisioning logs",
+                    "description": "VM provisioning and lifecycle log lines stored in the panel DB."
+                },
+                "chatbot_data": {
+                    "title": "AI chatbot data",
+                    "description": "Conversations and messages (messages cascade when a thread is removed)."
+                },
+                "mail_history": {
+                    "title": "Mail queue (sent / failed)",
+                    "description": "Completed mail jobs only — pending mail is never deleted."
+                },
+                "admin_notifications": {
+                    "title": "Admin notifications",
+                    "description": "Legacy rows in the global notifications table (dashboard banners)."
+                },
+                "featherzerotrust_logs": {
+                    "title": "FeatherZeroTrust logs",
+                    "description": "Scan batches and per-server results (child rows cascade)."
+                },
+                "sso_expired_tokens": {
+                    "title": "Expired SSO tokens",
+                    "description": "OIDC / SSO flow tokens that are already past expires_at (safe cleanup)."
+                }
+            }
+        },
         "oidcProviders": {
             "title": "OIDC Providers",
             "description": "Configure one or more OpenID Connect Single Sign-On providers.",
@@ -3531,7 +3795,12 @@
             "backups": {
                 "title": "Backups",
                 "limit_label_create": "Backup limit",
+                "retention_label_create": "Backup retention",
+                "retention_help_create": "Inherit uses the panel default. FIFO rolls the oldest backup when the limit is reached.",
                 "limit_help": "Maximum number of backups allowed for this instance (0 = disabled).",
+                "policy_section": "Backup policy",
+                "retention_label_edit": "Retention override",
+                "retention_help_edit": "Applies on save with resource settings. Inherit clears the per-VM override.",
                 "create": "Create Backup",
                 "creating": "Creating backup…",
                 "create_success": "Backup completed!",
@@ -3601,6 +3870,7 @@
             "no_templates_qemu": "No QEMU/KVM templates for this node. Add a template in VM Nodes → this node → Templates tab.",
             "no_templates_lxc": "No LXC templates for this node. Add an LXC template in VM Nodes → this node → Templates tab.",
             "no_free_ips": "No free IPs for this node. Add IPs in VM Node.",
+            "ip_pool_required": "Configure at least one IP in the node IP pool, then try again.",
             "details": {
                 "title": "VDS Instance Details",
                 "subtitle": "Viewing details for {name}",
@@ -3633,6 +3903,8 @@
             "node": "VDS Node",
             "select_node": "Select node",
             "node_help": "Proxmox node where the VM will be created.",
+            "proxmox_node": "Proxmox Node",
+            "proxmox_node_help": "Exact Proxmox cluster node where this VM will be created.",
             "select_node_template": "Select a node, template, and ensure IPs are available.",
             "memory": "Memory (MB)",
             "cpus": "CPUs",
@@ -3777,6 +4049,7 @@
                 "fqdn_required": "FQDN is required",
                 "fqdn_invalid": "Invalid FQDN format",
                 "location_required": "Location is required",
+                "location_invalid_type": "Wings nodes must use a game server location, not a VPS/VDS or web location.",
                 "daemon_base_required": "Daemon base path is required",
                 "ipv4_invalid": "Invalid IPv4 address",
                 "ipv6_invalid": "Invalid IPv6 address",
@@ -4104,6 +4377,50 @@
                 }
             }
         },
+        "mounts": {
+            "title": "Mounts",
+            "description": "Define host folders Wings may bind into containers. Link each mount to nodes for Wings allowed_mounts, optionally restrict by spell, then enable per server.",
+            "create": "Create mount",
+            "search_placeholder": "Search by name or path…",
+            "no_results": "No mounts defined",
+            "columns": {
+                "name": "Name",
+                "paths": "Source → target",
+                "nodes": "Nodes",
+                "spells": "Spells",
+                "read_only": "Access"
+            },
+            "read_only": "Read-only",
+            "read_write": "Read/write",
+            "admin_only": "Admin-assigned only",
+            "form": {
+                "name": "Name",
+                "source": "Host source path",
+                "target": "Container path",
+                "read_only": "Read-only in container",
+                "user_mountable": "Users can self-attach",
+                "user_mountable_help": "When enabled, end users may attach this mount to their own servers wherever your panel exposes mounts (client API / user UI). Disabled = administrators assign mounts only. Defaults to on for new mounts, matching Pelican.",
+                "description": "Description"
+            },
+            "drawer_create_title": "New mount",
+            "drawer_edit_title": "Edit mount",
+            "form_required": "Name, source path, and target path are required.",
+            "links_filter_placeholder": "Filter nodes or spells…",
+            "links_nodes_filter_placeholder": "Filter nodes…",
+            "links_spells_filter_placeholder": "Filter spells…",
+            "links_atomic_failed": "Failed to save node and spell links for this mount.",
+            "links_nodes_failed": "Failed to save node links for this mount.",
+            "links_spells_failed": "Node links were saved, but saving spell links failed. Reopen the editor to try again.",
+            "links": {
+                "nodes": "Nodes (required for Wings allow list)",
+                "spells": "Spells (empty = all spells)",
+                "hint": "Assign to nodes so Wings adds the source to allowed_mounts. Optionally restrict to specific spells."
+            },
+            "saved": "Mount saved",
+            "deleted": "Mount deleted",
+            "confirm_delete": "Delete this mount? Servers must be detached first.",
+            "fetch_failed": "Failed to load mounts"
+        },
         "servers": {
             "title": "Servers",
             "description": "Manage all servers in your system.",
@@ -4318,6 +4635,11 @@
                 "allocation_limit_help": "The total number of allocations a user is allowed to create for this server.",
                 "backup_limit": "Backup Limit",
                 "backup_limit_help": "The total number of backups that can be created for this server.",
+                "backup_retention_mode": "Backup retention override",
+                "backup_retention_mode_help": "Inherit uses the panel default (Admin → Settings → Servers). Hard limit blocks new backups when full. FIFO rolling removes the oldest unlocked backup so scheduled or manual backups can continue.",
+                "backup_retention_inherit": "Inherit panel default",
+                "backup_retention_hard_limit": "Hard limit (block when full)",
+                "backup_retention_fifo": "FIFO rolling (drop oldest)",
                 "startup_command": "Startup Command",
                 "startup_command_help": "The command that will be used to start the server. Populated from selected spell. The following data substitutes are available: {SERVER_MEMORY}, {SERVER_IP}, {SERVER_PORT}, and spell variables.",
                 "create_server": "Create Server",
@@ -4392,6 +4714,7 @@
                     "application": "Application",
                     "limits": "Limits",
                     "startup": "Startup",
+                    "mounts": "Mounts",
                     "allocations": "Allocations",
                     "actions": "Actions"
                 },
@@ -4429,6 +4752,13 @@
                     "description": "Configure the startup command for this server",
                     "available_variables": "Available Variables:"
                 },
+                "mounts": {
+                    "title": "Bind mounts",
+                    "description": "Mount host directories into this server container (same as Pelican mounts). Node must allow the source path; save to sync Wings.",
+                    "empty": "No mounts available for this node and spell. Create mounts under Admin → Mounts and link them to this node (and to this spell if you restrict by spell).",
+                    "loading": "Loading mounts…",
+                    "assignable_load_failed": "Could not load assignable mounts. Mount selection was reset; try again or refresh the page."
+                },
                 "allocations": {
                     "title": "Network Allocations",
                     "description": "Manage network allocations (IP:Port) for this server",
@@ -4443,7 +4773,10 @@
                     "assign_success": "Allocation assigned successfully",
                     "add": "Add Allocation",
                     "delete_success": "Allocation removed successfully",
-                    "delete_failed": "Failed to remove allocation"
+                    "delete_failed": "Failed to remove allocation",
+                    "set_primary": "Set Primary",
+                    "primary_success": "Primary allocation updated successfully",
+                    "primary_failed": "Failed to set primary allocation"
                 },
                 "actions": {
                     "suspension_title": "Suspension Status",
@@ -4747,6 +5080,31 @@
             "recommended_php": "Recommended PHP Version: ",
             "view_changelog": "View Detailed Changelog",
             "verify_integrity": "Verify Integrity",
+            "integrity_modal_title": "File integrity scan",
+            "integrity_modal_desc": "SHA-256 hashes of core backend code (app tree, public/index.php, composer metadata). Compare results to a baseline stored on the server after a known-good state.",
+            "integrity_scan_running": "Hashing files…",
+            "integrity_scan_failed": "Integrity scan failed.",
+            "integrity_files": "Files hashed",
+            "integrity_duration": "Duration",
+            "integrity_bytes": "Bytes hashed",
+            "integrity_scope": "Does not include vendor, storage data, or uploaded assets — only panel source and bootstrap files.",
+            "integrity_baseline_title": "Saved baseline",
+            "integrity_baseline_saved_at": "Recorded {date}",
+            "integrity_baseline_unknown_date": "Baseline file present (record date unknown)",
+            "integrity_baseline_version": "Panel version at record: {v}",
+            "integrity_no_baseline": "No baseline yet. After you trust this installation (e.g. fresh install or post-update), save a baseline. Future scans will flag added, removed, or modified files.",
+            "integrity_drift_heading": "Comparison vs baseline",
+            "integrity_modified": "Modified",
+            "integrity_missing": "Missing",
+            "integrity_extra": "New",
+            "integrity_read_errors": "{count} file(s) could not be read.",
+            "integrity_skipped_large": "{count} file(s) skipped (over size limit).",
+            "integrity_match_ok": "All tracked paths match the saved baseline.",
+            "integrity_drift_warning": "Differences detected — review modified or missing paths. New files may be normal after an update; update your baseline if intentional.",
+            "integrity_save_baseline": "Save current scan as baseline",
+            "integrity_copy_report": "Copy full report",
+            "integrity_baseline_saved": "Baseline saved to storage/config.",
+            "integrity_baseline_failed": "Could not save baseline.",
             "official_site": "Official Site",
             "last_checked": "Last checked: {date}",
             "changelog": {
@@ -4771,8 +5129,7 @@
                     "follow_prompts": "Follow the on-screen prompts",
                     "complete": "The update will complete automatically"
                 }
-            },
-            "integrity_coming_soon": "This feature is coming soon in a future update."
+            }
         },
         "quick_links": {
             "title": "Quick Actions",
@@ -5035,7 +5392,8 @@
                 "cloud_connected": {
                     "title": "Cloud Account Connected",
                     "credits": "Credits",
-                    "team": "Team"
+                    "team": "Team",
+                    "action": "Cloud management"
                 },
                 "popular": "Popular Plugins",
                 "search_placeholder": "Search online addons...",
@@ -5125,6 +5483,14 @@
                     "title": "Install Game Server Egg",
                     "realm": "Select Realm *",
                     "realm_help": "Select the realm where this spell will be installed.",
+                    "realm_mode_existing": "Use existing realm",
+                    "realm_mode_new": "Create new realm",
+                    "new_realm_help": "Creates a realm and installs this egg there in one step. You can rename or add more spells later in Admin → Realms.",
+                    "new_realm_name": "New realm name",
+                    "new_realm_name_placeholder": "e.g. Minecraft",
+                    "new_realm_description": "Description (optional)",
+                    "new_realm_name_error": "Enter a realm name with at least 2 characters.",
+                    "create_realm_failed": "Could not create the realm. Fix any errors and try again.",
                     "install": "Install",
                     "installing": "Installing...",
                     "community_egg_title": "Pterodactyl Community Egg",
@@ -5667,6 +6033,11 @@
             "title": "Settings",
             "subtitle": "Manage your panel settings.",
             "no_settings": "No settings available.",
+            "search_placeholder": "Search settings by name, key, or description…",
+            "search_clear": "Clear",
+            "search_no_results": "No settings match your search.",
+            "search_try_other": "Try another term or clear the search to see all categories.",
+            "search_showing": "Showing {shown} of {total} in this category.",
             "actions": {
                 "save": "Save Changes",
                 "upload_logs": "Upload Logs"
@@ -5679,7 +6050,11 @@
             },
             "logs": {
                 "uploading": "Uploading logs...",
-                "upload_failed": "Failed to upload logs."
+                "upload_failed": "Failed to upload logs.",
+                "dialog_description": "Logs were uploaded. You can share these URLs with support.",
+                "panel_logs": "Panel logs (web)",
+                "system_logs": "System logs (app)",
+                "upload_failed_generic": "Failed to upload logs."
             }
         },
         "rate_limits": {
@@ -6676,6 +7051,18 @@
         "subdomains": {
             "title": "Global Subdomains",
             "description": "Manage the global domains and their SRV mappings for the subdomain system.",
+            "featureEnabledAlertTitle": "User subdomains are enabled",
+            "featureEnabledAlertBody": "Panel settings allow users to create subdomains for their game servers. All of that traffic goes through the Cloudflare integration on this page. Configure the Cloudflare email and API key below, add at least one domain, and set spell mappings—or users will see errors when they try to use subdomains.",
+            "featureEnabledAlertIncomplete": "Cloudflare email or API key is missing or incomplete. Save valid credentials in the section below so DNS updates can run.",
+            "featureEnabledAlertCta": "Open Cloudflare settings",
+            "featureDisabledAlertTitle": "User-made subdomains are turned off",
+            "featureDisabledAlertBody": "Under Admin → Settings → Servers, \"Allow users to create and manage server subdomains\" is disabled. Clients will not see subdomain options until you enable it here or in Settings. You can still configure Cloudflare and domains below so everything is ready when you turn it on.",
+            "featureDisabledOpenSettings": "Open Admin Settings (Servers)",
+            "userSubdomainsToggleLabel": "Allow users to create and manage server subdomains",
+            "userSubdomainsToggleHint": "Same switch as in Admin → Settings → Servers.",
+            "userSubdomainsEnabledToast": "User subdomains are now enabled for clients.",
+            "userSubdomainsDisabledToast": "User subdomains are now disabled for clients.",
+            "userSubdomainsToggleFailed": "Could not update subdomain permission. Try again or use Admin Settings.",
             "newDomain": "New Domain",
             "searchPlaceholder": "Search domains...",
             "statusActive": "Active",

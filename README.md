@@ -62,6 +62,15 @@ npm run sync:en
 3. **Keys**: All translation files must contain all keys present in `en.json`
 4. **Formatting**: Use 4 spaces for indentation (JSON formatting is validated automatically)
 
+## Easy Translation Tool
+
+Instead of editing JSON files manually in a text editor, you can use the web-based **JSON Translator** to speed up the process. It features an interactive UI, auto-translation via the Google API, and automatic synchronization with the latest `en.json` file.
+
+1. **Get started:** Open the `Translator.html` file in your web browser.
+2. **Configure:** Upload your existing translation file if you have one or specify your target language code (e.g., `pl`, `de`, `fr`).
+3. **Translate:** Use the visual editor to translate strings manually, or use the **Auto-Translate** feature to speed up your workflow. The tool automatically ignores structural keys and focuses only on missing translations.
+4. **Download & Sync:** Click the **Download & Sync** button. The tool will automatically fix syntax errors, remove deprecated keys, and generate a perfectly formatted `{lang}.json` file.
+
 ## Contributing
 
 1. Fork this repository

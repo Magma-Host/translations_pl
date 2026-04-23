@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translations Manager</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f1f5f9;
+            --bg-dots: radial-gradient(#cbd5e1 1px, transparent 1px);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary-orange: #f97316;
+            --primary-hover: #ea580c;
+            --border-color: #e2e8f0;
+            --card-bg: #ffffff;
+            --success-bg: #f0fdf4;
+            --success-text: #15803d;
+            --danger-bg: #fef2f2;
+            --danger-text: #b91c1c;
+            --warning-bg: #fffbeb;
+            --warning-text: #b45309;
+            --info-bg: #f0f9ff;
+            --info-border: #bae6fd;
+            --info-text: #0369a1;
+            --char-bg: #fff7ed;
+            --char-text: #c2410c;
+            --char-border: #ffedd5;
+        }
+
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); background-image: var(--bg-dots); background-size: 24px 24px; color: var(--text-main); margin: 0; padding: 0; min-height: 100vh; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        .navbar { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 700; font-size: 1.25rem; color: #000; transition: opacity 0.2s; }
+        .logo-link:hover { opacity: 0.8; }
+        .logo-icon { font-size: 1.5rem; display: flex; align-items: center; justify-content: center; }
+
+        .main-container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .setup-wrapper { display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 40px; }
+        .page-header { margin-bottom: 40px; }
+        .page-header h1 { margin: 0 0 12px 0; font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; color: #0f172a; }
+        .page-header p { margin: 0; color: var(--text-muted); font-size: 1.1rem; }
+        
+        .btn { padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer; border: none; transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .btn-orange { background: var(--primary-orange); color: white; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.25); }
+        .btn-orange:hover:not(:disabled) { background: var(--primary-hover); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(249, 115, 22, 0.35); }
+        .btn-outline { background: white; border: 1px solid var(--border-color); color: var(--text-main); box-shadow: 0 1px 2px rgba(0,0,0,0.02); }
+        .btn-outline:hover:not(:disabled) { background: #f8fafc; border-color: #cbd5e1; }
+        .btn-danger { background: #fff1f2; color: #e11d48; border: 1px solid #ffe4e6; }
+        .btn-danger:hover { background: #ffe4e6; }
+        .btn-verify { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
+        .btn-verify:hover:not(:disabled) { background: #dcfce7; border-color: #86efac; }
+
+        .card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 30px; margin-bottom: 24px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01); width: 100%; box-sizing: border-box; position: relative; }
+        .card-setup { max-width: 850px; text-align: left; }
+        .card-title { font-size: 1.2rem; font-weight: 700; margin-top: 0; margin-bottom: 25px; color: var(--text-main); border-bottom: 2px solid #f1f5f9; padding-bottom: 12px;}
+
+        .input-group { margin-bottom: 24px; }
+        .input-group label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 10px; color: var(--text-main); }
+        input[type="file"], input[type="text"], input[type="password"], select { width: 100%; padding: 14px 16px; border: 1px solid #cbd5e1; border-radius: 10px; font-family: inherit; font-size: 0.95rem; background: #f8fafc; transition: all 0.2s ease; box-sizing: border-box; color: var(--text-main); }
+        input[type="file"]:focus, input[type="text"]:focus, input[type="password"]:focus, select:focus { border-color: var(--primary-orange); outline: none; background: white; box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1); }
+        .hint { display: block; margin-top: 8px; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+        /* --- PREMIUM API GUIDES --- */
+        .premium-guide-box { background-color: #fffdf4; border: 1px solid #fde68a; border-radius: 12px; padding: 24px; color: #92400e; font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px; box-shadow: 0 4px 6px -1px rgba(253, 230, 138, 0.3); }
+        .premium-guide-header { font-size: 1.15rem; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 20px; color: #78350f; }
+        .premium-guide-section { margin-bottom: 16px; }
+        .premium-guide-section:last-child { margin-bottom: 0; }
+        .premium-guide-section h4 { margin: 0 0 8px 0; font-size: 1.05rem; color: #92400e; font-weight: 700; }
+        .premium-guide-highlight { font-size: 1.25rem; font-weight: 800; color: #b45309; display: block; margin: 4px 0 12px 0; }
+        .premium-guide-box ul { margin: 0; padding-left: 20px; }
+        .premium-guide-box li { margin-bottom: 8px; }
+        .premium-guide-box a { color: #ea580c; font-weight: 600; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s;}
+        .premium-guide-box a:hover { border-bottom-color: #ea580c; }
+        .premium-guide-danger { color: #b91c1c; font-weight: 700; }
+
+        .premium-guide-box.blue-theme { background-color: #f0f9ff; border-color: #bae6fd; color: #0369a1; box-shadow: 0 4px 6px -1px rgba(186, 230, 253, 0.3); }
+        .premium-guide-box.blue-theme .premium-guide-header { color: #075985; }
+        .premium-guide-box.blue-theme h4 { color: #0369a1; }
+        .premium-guide-box.blue-theme .premium-guide-highlight { color: #0284c7; }
+
+        /* STATS BADGES */
+        .stats-wrapper { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 20px; padding-right: 40px; }
+        .badge { padding: 6px 12px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; border: 1px solid transparent; }
+        .badge-total { background: #f8fafc; color: #334155; border-color: #e2e8f0; }
+        .badge-enabled { background: #f0fdf4; color: #166534; border-color: #bbf7d0; }
+        .badge-missing { background: #fef2f2; color: #b91c1c; border-color: #fecaca; }
+        .badge-added { background: #e0e7ff; color: #4338ca; border-color: #c7d2fe; }
+        .badge-same { background: #fffbeb; color: #b45309; border-color: #fde68a; }
+        .badge-extra { background: #f1f5f9; color: #64748b; border-color: #e2e8f0; }
+        .badge-chars { background: var(--char-bg); color: var(--char-text); border-color: var(--char-border); }
+
+        /* CONTROLS BAR */
+        .controls-layout { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; justify-content: space-between; margin-bottom: 25px; }
+        
+        .filters-group { display: flex; flex-direction: column; gap: 12px; flex: 1; min-width: 350px; }
+        
+        .filters-box { display: flex; background: #f1f5f9; padding: 8px; border-radius: 12px; gap: 6px; flex-wrap: wrap; }
+        .filter-btn { border: none; background: transparent; color: #64748b; font-weight: 600; padding: 8px 14px; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; font-size: 0.9rem; font-family: inherit; display: inline-flex; align-items: center; gap: 6px; }
+        .filter-btn:hover { color: #0f172a; background: #e2e8f0; }
+        .filter-btn.active { background: white; color: var(--primary-orange); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+        .search-input { width: 100%; max-width: 350px; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.9rem; background: #fff; transition: all 0.2s ease; color: var(--text-main); }
+        .search-input:focus { border-color: var(--primary-orange); outline: none; box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1); }
+
+        .toggles-box { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; background: #ffffff; border: 1px solid var(--border-color); padding: 10px 20px; border-radius: 50px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .toggle-label { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 600; color: var(--text-main); cursor: pointer; user-select: none; }
+        .toggle-switch { position: relative; width: 36px; height: 20px; display: inline-block; flex-shrink: 0; }
+        .toggle-switch input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .3s; border-radius: 22px; }
+        .toggle-slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background-color: white; transition: .3s cubic-bezier(0.4, 0, 0.2, 1); border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.15);}
+        .toggle-switch input:checked + .toggle-slider { background-color: var(--success-text); }
+        .toggle-switch input:checked + .toggle-slider:before { transform: translateX(16px); }
+        .toggle-switch.orange-switch input:checked + .toggle-slider { background-color: var(--primary-orange); }
+
+        /* PAGINATION */
+        .pagination-container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .pagination-top { margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
+        .pagination-bottom { margin-top: 20px; padding-top: 24px; border-top: 1px solid var(--border-color); }
+        .page-info { font-weight: 600; color: var(--text-muted); font-size: 0.95rem; display: flex; align-items: center; gap: 4px;}
+        .page-controls { display: flex; gap: 10px; }
+        
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+        input[type=number] { appearance: textfield; -moz-appearance: textfield; }
+        .quick-page-jump { width: 50px; background: transparent; border: none; border-bottom: 2px dashed #cbd5e1; outline: none; font: inherit; font-weight: 700; color: var(--text-main); text-align: center; padding: 2px 0; transition: border-color 0.2s;}
+        .quick-page-jump:focus { border-bottom-color: var(--primary-orange); }
+
+        /* EDITOR GRID */
+        .grid-header { display: grid; grid-template-columns: 1fr 1.5fr 120px; gap: 24px; padding: 0 0 15px 0; border-bottom: 2px solid var(--border-color); font-weight: 700; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        @keyframes waterfallFadeIn { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
+
+        .translation-row { display: grid; grid-template-columns: 1fr 1.5fr 120px; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border-color); align-items: start; opacity: 0; }
+        .translation-row:last-child { border-bottom: none; }
+        
+        .source-col { font-size: 0.95rem; padding: 12px; border-radius: 12px; transition: background 0.2s; border: 1px dashed transparent; }
+        .source-key { font-family: monospace; font-size: 0.8rem; color: var(--text-muted); background: #f1f5f9; padding: 4px 8px; border-radius: 6px; margin-bottom: 12px; display: inline-block; font-weight: 600; word-break: break-all;}
+        .source-text { font-weight: 500; color: var(--text-main); transition: all 0.2s; line-height: 1.6; pointer-events: none; }
+        
+        /* HOVER EFFECT LOGIC */
+        .hover-active .is-hoverable .source-col { cursor: pointer; }
+        .hover-active .is-hoverable .source-col:hover { background: #fff7ed; border-color: #fed7aa; }
+        .hover-active .is-hoverable.is-first .source-col::after { 
+            content: '🖱️ Hover anywhere here to auto-translate'; 
+            display: block; margin-top: 15px; font-size: 0.8rem; color: var(--primary-orange); 
+            font-weight: 600; background: #ffedd5; padding: 8px 12px; border-radius: 8px; width: fit-content; 
+        }
+
+        .target-col { position: relative; }
+        textarea { width: 100%; min-height: 95px; padding: 14px; border: 1px solid var(--border-color); border-radius: 10px; font-family: inherit; font-size: 0.95rem; resize: vertical; box-sizing: border-box; transition: all 0.2s ease; background: white; color: var(--text-main); line-height: 1.6; box-shadow: 0 1px 2px rgba(0,0,0,0.02);}
+        textarea:focus { border-color: var(--primary-orange); outline: none; box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1); }
+        
+        .action-col { display: flex; flex-direction: column; gap: 10px; padding-top: 10px; }
+        .auto-tag { position: absolute; top: -12px; right: 10px; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; display: none; z-index: 10; }
+        .tag-ai { color: #c2410c; background: #ffedd5; border: 1px solid #fed7aa; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .tag-verified { color: #166534; background: #dcfce7; border: 1px solid #bbf7d0; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .tag-repaired { color: #0369a1; background: #e0f2fe; border: 1px solid #bae6fd; margin-bottom: 20px; font-size: 0.95rem; }
+
+        .status-extra .source-text { text-decoration: line-through; color: #94a3b8; }
+        .status-extra textarea { background: #f8fafc; color: #94a3b8; border-color: #e2e8f0; }
+
+        .hidden { display: none !important; }
+
+        .footer { text-align: center; margin-top: 60px; padding: 40px 0; color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Modal Styles */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.7); z-index: 999; display: flex; align-items: flex-start; justify-content: center; padding-top: 5vh; overflow-y: auto; backdrop-filter: blur(4px); }
+        .modal-content { background: white; padding: 30px; border-radius: 16px; width: 90%; max-width: 850px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); margin-bottom: 5vh; }
+        #brokenFileEditor { width: 100%; height: 350px; font-family: monospace; font-size: 13px; padding: 15px; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 20px; background: #f8fafc; line-height: 1.5; white-space: pre; overflow-wrap: normal; overflow-x: auto; outline: none; transition: border-color 0.2s; box-sizing: border-box;}
+        #brokenFileEditor:focus { border-color: var(--primary-orange); box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1); }
+        
+        .absolute-top-right { position: absolute; top: 20px; right: 20px; }
+        .btn-info-circle { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #f1f5f9; border: 1px solid #cbd5e1; color: #64748b; font-weight: bold; font-family: serif; font-size: 1.1rem; cursor: pointer; transition: all 0.2s; padding: 0; }
+        .btn-info-circle:hover { background: #e2e8f0; color: #0f172a; border-color: #94a3b8; }
+        
+        .info-modal-card { background: #f8fafc; border: 1px solid var(--border-color); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+        .info-modal-card h4 { margin: 0 0 8px 0; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; color: var(--text-main); }
+        .info-modal-card p { margin: 0; font-size: 0.95rem; color: var(--text-muted); line-height: 1.5; }
+        .info-modal-tip { margin-top: 12px; font-size: 0.85rem; color: var(--text-muted); background: #fff; padding: 10px 14px; border-radius: 8px; border: 1px solid #e2e8f0; border-left: 3px solid var(--primary-orange); }
+        
+        /* Lang Modal Styles */
+        .lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; max-height: 400px; overflow-y: auto; margin-top: 15px; padding-right: 5px; }
+        .lang-item { display: flex; align-items: center; gap: 10px; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; cursor: pointer; transition: all 0.2s; background: #f8fafc; }
+        .lang-item:hover { border-color: var(--primary-orange); background: #fff7ed; }
+        .lang-item strong { color: var(--primary-orange); font-family: monospace; font-size: 0.95rem; background: white; padding: 3px 8px; border-radius: 6px; border: 1px solid #fed7aa;}
+        .lang-item span { color: var(--text-main); font-size: 0.9rem; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="#" class="logo-link">
+            <span class="logo-icon">🌐</span>
+            Translator<span style="font-weight: 400; color: var(--text-muted); font-size: 0.95rem;">|Debuger </span>
+        </a>
+        <div style="display: flex; gap: 12px; align-items: center;">
+            <button id="navDvBtn" class="btn btn-outline hidden" onclick="exportDvJson()">🐛 Debug (dv.json)</button>
+            <button id="navDownloadBtn" class="btn btn-orange hidden" onclick="exportJson()">📥 Download & Sync</button>
+            <button class="btn btn-danger" onclick="clearSession()">🗑️ Reset</button>
+        </div>
+    </div>
+
+    <div id="syntaxModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 style="margin-top:0; color:#e11d48;">⚠️ Broken JSON Syntax Detected!</h2>
+            <p style="margin-bottom: 10px; font-size: 1.05rem;">File causing error: <strong id="brokenFileName"></strong></p>
+            <div class="info-box warning" style="margin-bottom:15px; background: #fef2f2; border-color: #fecaca; color: #991b1b; padding: 12px; border-radius: 8px; border: 1px solid;">
+                <strong>Error Details:</strong>
+                <code id="brokenFileError" style="display:block; margin-top:5px; font-weight: 600;"></code>
+            </div>
+            <p style="font-size:0.95rem; color:var(--text-muted); margin-bottom:15px;">
+                The auto-repair engine couldn't fix this file automatically. Fix the typo directly in this text box, and click <b>Save & Retry</b>!
+            </p>
+            <textarea id="brokenFileEditor" spellcheck="false"></textarea>
+            <div style="display:flex; justify-content:flex-end; gap:10px;">
+                <button class="btn btn-outline" onclick="closeSyntaxModal()">Cancel</button>
+                <button class="btn btn-orange" onclick="retryFromModal()">Save & Retry →</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="howItWorksModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 750px;">
+            <h2 style="margin-top:0; color: var(--text-main); margin-bottom: 24px; font-weight: 800;">🛠️ How does it all work?</h2>
+            
+            <div class="info-modal-card">
+                <h4 style="color: var(--primary-orange);">🖱️ Hover Mode</h4>
+                <p>Enable this mode to translate text just by moving your mouse. Simply hover over the original text on the left side, and the script will automatically translate it in the background.</p>
+                <div class="info-modal-tip">
+                    <b>Tip:</b> The script ignores already verified items (✅) and those previously translated by AI (✨). This prevents wasting your API limits.
+                </div>
+            </div>
+
+            <div class="info-modal-card">
+                <h4 style="color: var(--primary-orange);">⏭️ Auto-Skip Page</h4>
+                <p>This option works together with the Auto-Translate mode. If enabled, the editor will automatically jump to the next page and continue translating once the current page is fully processed. Requires leaving the browser tab open.</p>
+            </div>
+
+            <div class="info-modal-card">
+                <h4 style="color: var(--primary-orange);">🚀 Auto-Translate</h4>
+                <p>Turn this switch ON to automatically translate items on the current page. It stays ON until you turn it off. If "Auto-Skip Page" is disabled, it will pause at the end of the page and wait for you to manually switch to the next one before resuming!</p>
+                <div class="info-modal-tip">
+                    <b>Tip:</b> A safe delay is kept between each translation request <b>(1.5s for Google Free API)</b> to prevent your IP address from getting temporarily banned by Google.
+                </div>
+            </div>
+
+            <div class="info-modal-card" style="background: #fffdf4; border-color: #fde68a;">
+                <h4 style="color: #92400e;">🐛 Debug Mode (dv.json)</h4>
+                <p>Downloads a special language file where every translation is replaced with its ID and English text (e.g., <code>[42] Welcome</code>). Upload this to your live server to easily find out which line corresponds to which translation. Search by this <b>#ID</b> in the panel!</p>
+            </div>
+
+            <div style="display: flex; gap: 20px; margin-top: 30px; flex-wrap: wrap;">
+                <div style="flex: 1; background: #f0fdf4; border: 1px solid #bbf7d0; padding: 20px; border-radius: 12px; min-width: 250px;">
+                    <strong style="color: #166534; display: block; margin-bottom: 8px;">📥 Download & Sync</strong>
+                    <p style="font-size: 0.9rem; color: #15803d; margin: 0; line-height: 1.5;">Downloads the resulting <code>{lang}.json</code> file to your computer. It also synchronizes your old translations with the new ones, attempting to repair syntax errors.</p>
+                </div>
+                <div style="flex: 1; background: #fef2f2; border: 1px solid #fecaca; padding: 20px; border-radius: 12px; min-width: 250px;">
+                    <strong style="color: #b91c1c; display: block; margin-bottom: 8px;">🗑️ Reset Editor</strong>
+                    <p style="font-size: 0.9rem; color: #991b1b; margin: 0; line-height: 1.5;">Clears all your browser's local storage data (uploaded files, translations, toggles, memory) and gives you a fresh start. Unsaved progress will be lost!</p>
+                </div>
+            </div>
+            
+            <div style="display:flex; justify-content:flex-end; margin-top: 30px;">
+                <button class="btn btn-outline" onclick="closeInfoModal()" style="padding: 12px 24px;">Got it, thanks!</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="langModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 800px;">
+            <h2 style="margin-top:0; color: var(--text-main); margin-bottom: 10px;">🌐 Find Language Code</h2>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">Select a language code from the official supported list below. Clicking a language will automatically apply it.</p>
+            
+            <input type="text" id="langSearchInput" class="search-input" style="max-width: 100%; border-color: var(--primary-orange); box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);" placeholder="🔍 Search language name or code (e.g. Polish, pl)..." onkeyup="filterLangList()">
+            
+            <div id="langListContainer" class="lang-grid">
+                </div>
+
+            <div style="display:flex; justify-content:flex-end; margin-top: 20px;">
+                <button class="btn btn-outline" onclick="closeLangModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-container">
+        
+        <div id="setupSection" class="setup-wrapper">
+            <div class="page-header">
+                <h1>Translations Manager</h1>
+                <p>Configure your environment and choose your translation engine.</p>
+            </div>
+
+            <div class="card card-setup" id="uploadCard">
+                <div class="card-title">1. Project Files</div>
+                <div id="repairAlert" class="badge tag-repaired hidden" style="width: 100%; display: block; padding: 14px; text-align: left;">
+                    🛠️ <b>Auto-Repair Triggered!</b> We found syntax errors (missing commas) in your uploaded file and automatically fixed them.
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                    <div class="input-group" style="margin: 0;">
+                        <label>English Master File (Optional)</label>
+                        <input type="file" id="fileEn" accept=".json">
+                        <span class="hint">Leave empty to auto-load from <a href="https://github.com/MythicalLTD/FeatherPanel/tree/main/frontendv2/public/locales" target="_blank" style="color: var(--primary-orange); font-weight: 600; text-decoration: none;">FeatherPanel GitHub ↗</a>.</span>
+                    </div>
+                    <div class="input-group" style="margin: 0;">
+                        <label>Target Translation (Optional)</label>
+                        <input type="file" id="filePl" accept=".json">
+                        <span class="hint">Your previous file (e.g., pl.json).</span>
+                    </div>
+                </div>
+                
+                <div class="input-group" style="margin-bottom: 0;">
+                    <label>Target Language <a href="https://welocalizetalent.zendesk.com/hc/en-us/articles/31752038144663-Language-Codes-ISO-639-1" target="_blank" style="color: var(--primary-orange); font-weight: 600; text-decoration: none;">Code ↗</a>.</span></label>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <input type="text" id="targetLang" placeholder="e.g. pl, de, fr, es" value="pl" style="max-width: 200px;">
+                        <button type="button" class="btn btn-outline" onclick="openLangModal()" style="height: 46px; border-color: #cbd5e1; color: var(--text-main);">🔍 Find Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card card-setup">
+                <div class="card-title">2. Translation Engine</div>
+                <div class="input-group">
+                    <label>Select Google Translation Engine</label>
+                    <select id="apiProvider" onchange="toggleApiSettings()">
+                        <option value="google_free">Google Translate (Free, Rate Limited)</option>
+                        <option value="google_cloud">Google Cloud API (Lightning Fast, Pro)</option>
+                    </select>
+                </div>
+                
+                <div id="info_google_free" class="premium-guide-box blue-theme">
+                    <div class="premium-guide-header">
+                        🌐 Google Free (Public Extensions API)
+                    </div>
+                    <div class="premium-guide-section">
+                        <h4>1. Setup & Cost:</h4>
+                        <p style="margin-bottom: 0;">None required. Works out of the box and is 100% Free. No credit card required.</p>
+                    </div>
+                    <div class="premium-guide-section">
+                        <h4>2. Limits & Performance:</h4>
+                        <p style="margin-bottom: 0;">Bound to your personal IP address. Auto-Translate is artificially slowed down (~1.5s per request) to prevent your IP from getting a temporary Google ban.</p>
+                    </div>
+                </div>
+
+                <div id="gcpGroup" class="hidden">
+                    <div class="premium-guide-box">
+                        <div class="premium-guide-header">
+                            ☁️ Google Cloud Translation API Guide
+                        </div>
+                        
+                        <div class="premium-guide-section">
+                            <h4>1. Pricing & Limits:</h4>
+                            <p style="margin: 0;">First</p>
+                            <span class="premium-guide-highlight">500,000 characters/month are free</span>
+                            <p style="margin: 0;">You can translate up to 6,000,000 chars per minute. A credit card is required by Google to create the API Key to prevent spam, but you will not be charged if you stay under the limit.</p>
+                        </div>
+                        
+                        <div style="border-top: 1px dashed rgba(180, 83, 9, 0.2); margin: 16px 0;"></div>
+                        
+                        <div class="premium-guide-section">
+                            <h4>2. How to get the key:</h4>
+                            <ul>
+                                <li>Go to the <a href="https://console.cloud.google.com/" target="_blank">Google Cloud Console ↗</a> and create a new project.</li>
+                                <li>Enable Billing (Navigation Menu > Billing).</li>
+                                <li>Go to <a href="https://console.cloud.google.com/apis/library/translate.googleapis.com" target="_blank">Cloud Translation API ↗</a> and click <b>Enable</b>.</li>
+                                <li>Go to Navigation Menu > APIs & Services > <b>Credentials</b>.</li>
+                                <li>Click <b>Create Credentials</b> > <b>API key</b>.</li>
+                                <li><span class="premium-guide-danger">Important Security Step:</span> Edit the key, scroll down to <b>API restrictions</b>, choose <b>Restrict key</b> and select exactly <b>Cloud Translation API</b>. Leave Application restrictions at "None".</li>
+                                <li>Save and paste the key below.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group" style="margin-bottom: 0;">
+                        <label>Your Google Cloud API Key</label>
+                        <input type="password" id="gcpKey" placeholder="AIzaSy...">
+                        <span class="hint">Saved securely in your browser's LocalStorage.</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; display: flex; justify-content: flex-end; gap: 15px; border-top: 1px solid var(--border-color); padding-top: 24px;">
+                    <button class="btn btn-outline" id="btnDebugDirect" onclick="downloadDirectDvJson()" style="font-size: 1.05rem; padding: 14px 28px; color: var(--text-main); border-color: var(--border-color);">
+                        🐛 Generate dv.json
+                    </button>
+                    <button class="btn btn-orange" id="btnLoad" onclick="initFilesLoad()" style="font-size: 1.05rem; padding: 14px 28px;">
+                        Start Translating →
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="editorSection" class="hidden">
+            
+            <div class="card" style="padding: 24px 30px; margin-bottom: 24px;">
+                <button class="btn-info-circle absolute-top-right" onclick="openInfoModal()" title="How it works?">i</button>
+
+                <div class="stats-wrapper">
+                    <span class="badge badge-total" id="statTotal">📊 Total: 0</span>
+                    <span class="badge badge-enabled" id="statOk">✓ Correct: 0</span>
+                    <span class="badge badge-missing" id="statMissing">⚠ Missing: 0</span>
+                    <span class="badge badge-added" id="statAdded">🆕 Added: 0</span>
+                    <span class="badge badge-same" id="statSame">🔄 Same: 0</span>
+                    <span class="badge badge-extra" id="statExtra">🗑️ Removed: 0</span>
+                    <span class="badge badge-chars hidden" id="statChars">🔤 Session Chars: 0</span>
+                </div>
+
+                <div class="controls-layout">
+                    <div class="filters-group">
+                        <div class="filters-box">
+                            <button class="filter-btn active" id="filterAll" onclick="filterTable('all', true)"><span>🌍</span> Show Active</button>
+                            <button class="filter-btn" id="filterMissing" onclick="filterTable('missing', true)"><span>⚠</span> Show Missing</button>
+                            <button class="filter-btn" id="filterAdded" onclick="filterTable('added', true)"><span>🆕</span> Show Added</button>
+                            <button class="filter-btn" id="filterSame" onclick="filterTable('same', true)"><span>🔄</span> Show Same</button>
+                            <button class="filter-btn" id="filterExtra" onclick="filterTable('extra', true)"><span>🗑️</span> Show Removed</button>
+                        </div>
+                        <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search text or #ID..." onkeyup="filterTable(currentFilter, false)">
+                    </div>
+                    
+                    <div class="toggles-box">
+                        <label class="toggle-label">
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="hoverToggle" onchange="toggleHoverMode()">
+                                <span class="toggle-slider"></span>
+                            </div>
+                            🖱️ Hover Mode
+                        </label>
+                        
+                        <label class="toggle-label">
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="autoSkipToggle" onchange="toggleAutoSkip()">
+                                <span class="toggle-slider"></span>
+                            </div>
+                            ⏭️ Auto-Skip
+                        </label>
+
+                        <label class="toggle-label" style="color: var(--primary-orange);">
+                            <div class="toggle-switch orange-switch">
+                                <input type="checkbox" id="autoTranslateToggle" onchange="triggerAutoTranslate()">
+                                <span class="toggle-slider"></span>
+                            </div>
+                            🚀 Auto-Translate
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pagination-container pagination-top">
+                    <div class="page-info">
+                        Page 
+                        <input type="number" class="quick-page-jump" min="1">
+                        of <span class="total-pages-label">1</span> 
+                        <span class="total-items-label" style="font-weight: 400; margin-left: 5px;">(0 items)</span>
+                    </div>
+                    <div class="page-controls">
+                        <button class="btn btn-outline" id="btnPrevTop" onclick="changePage(-1)">← Prev</button>
+                        <button class="btn btn-outline" id="btnNextTop" onclick="changePage(1)">Next →</button>
+                    </div>
+                </div>
+
+                <div class="grid-header">
+                    <div>Original String (EN)</div>
+                    <div>Target Translation</div>
+                    <div style="text-align: center;">Action</div>
+                </div>
+
+                <div id="tableBody"></div>
+
+                <div class="pagination-container pagination-bottom">
+                    <div class="page-info">
+                        Page 
+                        <input type="number" class="quick-page-jump" min="1">
+                        of <span class="total-pages-label">1</span> 
+                        <span class="total-items-label" style="font-weight: 400; margin-left: 5px;">(0 items)</span>
+                    </div>
+                    <div class="page-controls">
+                        <button class="btn btn-outline" id="btnPrevBottom" onclick="changePage(-1)">← Prev</button>
+                        <button class="btn btn-outline" id="btnNextBottom" onclick="changePage(1)">Next →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Made by AI & <a href="https://github.com/Magma-Host" target="_blank" style="color: var(--primary-orange); font-weight: 599; text-decoration: none;">Me ↗</a>.</span>
+        </div>
+    </div>
+
+    <script>
+        // FULL LANGUAGE DICTIONARY
+        const supportedLanguages = {
+          "aa": "Afar", "ab": "Abkhazian", "ae": "Avestan", "af": "Afrikaans", "ak": "Akan", "am": "Amharic", "an": "Aragonese", 
+          "ar": "Arabic", "ar-ae": "Arabic (U.A.E.)", "ar-bh": "Arabic (Bahrain)", "ar-dz": "Arabic (Algeria)", "ar-eg": "Arabic (Egypt)", 
+          "ar-iq": "Arabic (Iraq)", "ar-jo": "Arabic (Jordan)", "ar-kw": "Arabic (Kuwait)", "ar-lb": "Arabic (Lebanon)", "ar-ly": "Arabic (Libya)", 
+          "ar-ma": "Arabic (Morocco)", "ar-om": "Arabic (Oman)", "ar-qa": "Arabic (Qatar)", "ar-sa": "Arabic (Saudi Arabia)", "ar-sy": "Arabic (Syria)", 
+          "ar-tn": "Arabic (Tunisia)", "ar-ye": "Arabic (Yemen)", "as": "Assamese", "av": "Avaric", "ay": "Aymara", "az": "Azeri", 
+          "ba": "Bashkir", "be": "Belarusian", "bg": "Bulgarian", "bh": "Bihari", "bi": "Bislama", "bm": "Bambara", "bn": "Bengali", 
+          "bo": "Tibetan", "br": "Breton", "bs": "Bosnian", "ca": "Catalan", "ce": "Chechen", "ch": "Chamorro", "co": "Corsican", 
+          "cr": "Cree", "cs": "Czech", "cu": "Church Slavonic", "cv": "Chuvash", "cy": "Welsh", "da": "Danish", "de": "German", 
+          "de-at": "German (Austria)", "de-ch": "German (Switzerland)", "de-de": "German (Germany)", "de-li": "German (Liechtenstein)", "de-lu": "German (Luxembourg)", 
+          "div": "Divehi", "dv": "Divehi", "dz": "Bhutani", "ee": "Ewe", "el": "Greek", "en": "English", "en-au": "English (Australia)", 
+          "en-bz": "English (Belize)", "en-ca": "English (Canada)", "en-cb": "English (Caribbean)", "en-gb": "English (United Kingdom)", "en-ie": "English (Ireland)", 
+          "en-jm": "English (Jamaica)", "en-nz": "English (New Zealand)", "en-ph": "English (Philippines)", "en-tt": "English (Trinidad and Tobago)", "en-us": "English (United States)", 
+          "en-za": "English (South Africa)", "en-zw": "English (Zimbabwe)", "eo": "Esperanto", "es": "Spanish", "es-ar": "Spanish (Argentina)", 
+          "es-bo": "Spanish (Bolivia)", "es-cl": "Spanish (Chile)", "es-co": "Spanish (Colombia)", "es-cr": "Spanish (Costa Rica)", "es-do": "Spanish (Dominican Republic)", 
+          "es-ec": "Spanish (Ecuador)", "es-es": "Spanish (Spain)", "es-gt": "Spanish (Guatemala)", "es-hn": "Spanish (Honduras)", "es-mx": "Spanish (Mexico)", 
+          "es-ni": "Spanish (Nicaragua)", "es-pa": "Spanish (Panama)", "es-pe": "Spanish (Peru)", "es-pr": "Spanish (Puerto Rico)", "es-py": "Spanish (Paraguay)", 
+          "es-sv": "Spanish (El Salvador)", "es-us": "Spanish (United States)", "es-uy": "Spanish (Uruguay)", "es-ve": "Spanish (Venezuela)", "et": "Estonian", 
+          "eu": "Basque", "fa": "Farsi", "ff": "Fulah", "fi": "Finnish", "fj": "Fiji", "fo": "Faroese", "fr": "French", "fr-be": "French (Belgium)", 
+          "fr-ca": "French (Canada)", "fr-ch": "French (Switzerland)", "fr-fr": "French (France)", "fr-lu": "French (Luxembourg)", "fr-mc": "French (Monaco)", 
+          "fy": "Frisian", "ga": "Irish", "gd": "Gaelic", "gl": "Galician", "gn": "Guarani", "gu": "Gujarati", "gv": "Manx", "ha": "Hausa", 
+          "he": "Hebrew", "hi": "Hindi", "ho": "Hiri Motu", "hr": "Croatian", "hr-ba": "Croatian (Bosnia and Herzegovina)", "hr-hr": "Croatian (Croatia)", 
+          "ht": "Haitian", "hu": "Hungarian", "hy": "Armenian", "hz": "Herero", "ia": "Interlingua", "id": "Indonesian", "ie": "Interlingue", 
+          "ig": "Igbo", "ii": "Sichuan Yi", "ik": "Inupiak", "in": "Indonesian", "io": "Ido", "is": "Icelandic", "it": "Italian", "it-ch": "Italian (Switzerland)", 
+          "it-it": "Italian (Italy)", "iu": "Inuktitut", "iw": "Hebrew", "ja": "Japanese", "ji": "Yiddish", "jv": "Javanese", "jw": "Javanese", 
+          "ka": "Georgian", "kg": "Kongo", "ki": "Kikuyu", "kj": "Kuanyama", "kk": "Kazakh", "kl": "Greenlandic", "km": "Cambodian", "kn": "Kannada", 
+          "ko": "Korean", "kok": "Konkani", "kr": "Kanuri", "ks": "Kashmiri", "ku": "Kurdish", "kv": "Komi", "kw": "Cornish", "ky": "Kirghiz", 
+          "kz": "Kyrgyz", "la": "Latin", "lb": "Luxembourgish", "lg": "Ganda", "li": "Limburgan", "ln": "Lingala", "lo": "Laothian", "ls": "Slovenian", 
+          "lt": "Lithuanian", "lu": "Luba-Katanga", "lv": "Latvian", "mg": "Malagasy", "mh": "Marshallese", "mi": "Maori", "mk": "FYRO Macedonian", 
+          "ml": "Malayalam", "mn": "Mongolian", "mo": "Moldavian", "mr": "Marathi", "ms": "Malay", "ms-bn": "Malay (Brunei Darussalam)", "ms-my": "Malay (Malaysia)", 
+          "mt": "Maltese", "my": "Burmese", "na": "Nauru", "nb": "Norwegian (Bokmal)", "nd": "North Ndebele", "ne": "Nepali (India)", "ng": "Ndonga", 
+          "nl": "Dutch", "nl-be": "Dutch (Belgium)", "nl-nl": "Dutch (Netherlands)", "nn": "Norwegian (Nynorsk)", "no": "Norwegian", "nr": "South Ndebele", 
+          "ns": "Northern Sotho", "nv": "Navajo", "ny": "Chichewa", "oc": "Occitan", "oj": "Ojibwa", "om": "(Afan)/Oromoor/Oriya", "or": "Oriya", 
+          "os": "Ossetian", "pa": "Punjabi", "pi": "Pali", "pl": "Polish", "ps": "Pashto/Pushto", "pt": "Portuguese", "pt-br": "Portuguese (Brazil)", 
+          "pt-pt": "Portuguese (Portugal)", "qu": "Quechua", "qu-bo": "Quechua (Bolivia)", "qu-ec": "Quechua (Ecuador)", "qu-pe": "Quechua (Peru)", 
+          "rm": "Rhaeto-Romanic", "rn": "Kirundi", "ro": "Romanian", "ru": "Russian", "rw": "Kinyarwanda", "sa": "Sanskrit", "sb": "Sorbian", 
+          "sc": "Sardinian", "sd": "Sindhi", "se": "Sami", "se-fi": "Sami (Finland)", "se-no": "Sami (Norway)", "se-se": "Sami (Sweden)", "sg": "Sangro", 
+          "sh": "Serbo-Croatian", "si": "Singhalese", "sk": "Slovak", "sl": "Slovenian", "sm": "Samoan", "sn": "Shona", "so": "Somali", "sq": "Albanian", 
+          "sr": "Serbian", "sr-ba": "Serbian (Bosnia and Herzegovina)", "sr-sp": "Serbian (Serbia and Montenegro)", "ss": "Siswati", "st": "Sesotho", 
+          "su": "Sundanese", "sv": "Swedish", "sv-fi": "Swedish (Finland)", "sv-se": "Swedish (Sweden)", "sw": "Swahili", "sx": "Sutu", "syr": "Syriac", 
+          "ta": "Tamil", "te": "Telugu", "tg": "Tajik", "th": "Thai", "ti": "Tigrinya", "tk": "Turkmen", "tl": "Tagalog", "tn": "Tswana", "to": "Tonga", 
+          "tr": "Turkish", "ts": "Tsonga", "tt": "Tatar", "tw": "Twi", "ty": "Tahitian", "ug": "Uighur", "uk": "Ukrainian", "ur": "Urdu", "us": "English", 
+          "uz": "Uzbek", "ve": "Venda", "vi": "Vietnamese", "vo": "Volapuk", "wa": "Walloon", "wo": "Wolof", "xh": "Xhosa", "yi": "Yiddish", "yo": "Yoruba", 
+          "za": "Zhuang", "zh": "Chinese", "zh-cn": "Chinese (China)", "zh-hk": "Chinese (Hong Kong SAR)", "zh-mo": "Chinese (Macau SAR)", "zh-sg": "Chinese (Singapore)", 
+          "zh-tw": "Chinese (Taiwan)", "zu": "Zulu"
+        };
+
+        // LANGUAGE MODAL FUNCTIONS
+        function openLangModal() {
+            renderLangList('');
+            document.getElementById('langSearchInput').value = '';
+            document.getElementById('langModal').classList.remove('hidden');
+        }
+
+        function closeLangModal() {
+            document.getElementById('langModal').classList.add('hidden');
+        }
+
+        function renderLangList(query) {
+            const container = document.getElementById('langListContainer');
+            container.innerHTML = '';
+            const q = query.toLowerCase();
+
+            for (const [code, name] of Object.entries(supportedLanguages)) {
+                if (code.includes(q) || name.toLowerCase().includes(q)) {
+                    const div = document.createElement('div');
+                    div.className = 'lang-item';
+                    div.innerHTML = `<strong>${code}</strong><span>${name}</span>`;
+                    div.onclick = () => selectLang(code);
+                    container.appendChild(div);
+                }
+            }
+        }
+
+        function filterLangList() {
+            const q = document.getElementById('langSearchInput').value;
+            renderLangList(q);
+        }
+
+        function selectLang(code) {
+            document.getElementById('targetLang').value = code;
+            closeLangModal();
+        }
+
+        let flatEnData = {};
+        let flatPlData = {};
+        let mergedData = {};
+        let stateMeta = {};
+        let sessionCharacters = 0;
+        let wasAutoRepaired = false;
+        
+        let currentRawEnText = "";
+        let currentRawPlText = "";
+        let rawEnObj = null;
+        let rawPlObj = null;
+        let currentlyFixing = ""; 
+        
+        const LS_EN = 'app_trans_en';
+        const LS_PL = 'app_trans_pl';
+        const LS_LANG = 'app_trans_lang';
+        const LS_META = 'app_trans_meta';
+        const LS_PROVIDER = 'app_api_provider';
+        const LS_GCP = 'app_gcp_key';
+        const LS_FILTER = 'app_trans_filter';
+        
+        const LS_AUTOSKIP = 'app_trans_autoskip';
+        const LS_HOVER = 'app_trans_hover';
+        const LS_AUTOTRANS = 'app_trans_autotranslate';
+        const LS_PAGE = 'app_trans_page';
+        
+        const APP_DELIM = '___APP___';
+
+        let currentFilter = 'all';
+        let activeKeys = [];
+        let currentPage = 1;
+        const itemsPerPage = 100;
+        let isGlobalCooldown = false;
+        
+        let hoverQueue = [];
+        let isHoverTranslating = false;
+        
+        let isAutoTranslatingAll = false;
+        let isProcessingQueue = false;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const savedAutoSkip = localStorage.getItem(LS_AUTOSKIP);
+            if (savedAutoSkip !== null) {
+                document.getElementById('autoSkipToggle').checked = (savedAutoSkip === 'true');
+            } else {
+                document.getElementById('autoSkipToggle').checked = false; 
+            }
+
+            const savedHover = localStorage.getItem(LS_HOVER);
+            if (savedHover !== null) {
+                document.getElementById('hoverToggle').checked = (savedHover === 'true');
+            }
+            
+            const savedAutoTrans = localStorage.getItem(LS_AUTOTRANS);
+            if (savedAutoTrans !== null) {
+                document.getElementById('autoTranslateToggle').checked = (savedAutoTrans === 'true');
+            }
+
+            const savedPage = localStorage.getItem(LS_PAGE);
+            if (savedPage !== null) {
+                currentPage = parseInt(savedPage, 10) || 1;
+            }
+
+            const pageInputs = document.querySelectorAll('.quick-page-jump');
+            pageInputs.forEach(input => {
+                input.addEventListener('input', function(e) {
+                    const totalPages = Math.ceil(activeKeys.length / itemsPerPage) || 1;
+                    let newPage = parseInt(this.value, 10);
+                    
+                    if (!isNaN(newPage) && newPage >= 1 && newPage <= totalPages) {
+                        currentPage = newPage;
+                        renderPage(false); 
+                        
+                        pageInputs.forEach(otherInput => {
+                            if (otherInput !== this) otherInput.value = newPage;
+                        });
+                    }
+                });
+            });
+        });
+
+        function openInfoModal() { document.getElementById('howItWorksModal').classList.remove('hidden'); }
+        function closeInfoModal() { document.getElementById('howItWorksModal').classList.add('hidden'); }
+
+        function toggleApiSettings() {
+            const provider = document.getElementById('apiProvider').value;
+            document.getElementById('info_google_free').classList.add('hidden');
+            document.getElementById('gcpGroup').classList.add('hidden');
+            
+            if (provider === 'google_free') document.getElementById('info_google_free').classList.remove('hidden');
+            if (provider === 'google_cloud') document.getElementById('gcpGroup').classList.remove('hidden');
+        }
+
+        document.getElementById('filePl').addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const fileName = e.target.files[0].name;
+                const langCode = fileName.split('.').slice(0, -1).join('.');
+                if (langCode) document.getElementById('targetLang').value = langCode;
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            if(localStorage.getItem(LS_PROVIDER)) document.getElementById('apiProvider').value = localStorage.getItem(LS_PROVIDER);
+            if(localStorage.getItem(LS_GCP)) document.getElementById('gcpKey').value = localStorage.getItem(LS_GCP);
+            toggleApiSettings();
+
+            if (localStorage.getItem(LS_EN)) {
+                flatEnData = JSON.parse(localStorage.getItem(LS_EN));
+                flatPlData = JSON.parse(localStorage.getItem(LS_PL)) || {};
+                stateMeta = JSON.parse(localStorage.getItem(LS_META)) || {};
+                document.getElementById('targetLang').value = localStorage.getItem(LS_LANG) || 'pl';
+                buildEditor(); 
+            }
+        });
+
+        function clearSession() {
+            if(confirm("Are you sure you want to reset the editor? All unsaved translations and settings will be cleared.")) {
+                const provider = localStorage.getItem(LS_PROVIDER);
+                const gcpKey = localStorage.getItem(LS_GCP);
+                
+                localStorage.clear();
+                
+                if(provider) localStorage.setItem(LS_PROVIDER, provider);
+                if(gcpKey) localStorage.setItem(LS_GCP, gcpKey);
+                
+                location.reload();
+            }
+        }
+
+        function toggleAutoSkip() {
+            localStorage.setItem(LS_AUTOSKIP, document.getElementById('autoSkipToggle').checked);
+        }
+
+        function toggleHoverMode() {
+            const isChecked = document.getElementById('hoverToggle').checked;
+            localStorage.setItem(LS_HOVER, isChecked);
+            const container = document.getElementById('tableBody');
+            if(isChecked) container.classList.add('hover-active');
+            else container.classList.remove('hover-active');
+        }
+
+        function flattenObject(ob) {
+            let toReturn = {};
+            for (let i in ob) {
+                if (!ob.hasOwnProperty(i)) continue;
+                if ((typeof ob[i]) == 'object' && ob[i] !== null && !Array.isArray(ob[i])) {
+                    if (Object.keys(ob[i]).length === 0) { toReturn[i] = {}; } 
+                    else {
+                        let flatObject = flattenObject(ob[i]);
+                        for (let x in flatObject) {
+                            if (!flatObject.hasOwnProperty(x)) continue;
+                            toReturn[i + APP_DELIM + x] = flatObject[x];
+                        }
+                    }
+                } else if (Array.isArray(ob[i])) { toReturn[i] = ob[i]; } 
+                else { toReturn[i] = ob[i]; }
+            }
+            return toReturn;
+        }
+
+        function unflattenObject(ob) {
+            let result = {};
+            for (let i in ob) {
+                let keys = i.split(APP_DELIM);
+                let current = result;
+                for (let j = 0; j < keys.length; j++) {
+                    let key = keys[j];
+                    if (j === keys.length - 1) { current[key] = ob[i]; } 
+                    else {
+                        current[key] = current[key] || {};
+                        current = current[key];
+                    }
+                }
+            }
+            return result;
+        }
+
+        async function safeJsonParse(text) {
+            try { return JSON.parse(text); } 
+            catch (err) {
+                try {
+                    let repairedText = text.replace(/([\}\]"]|true|false|null|\d)(\s*[\r\n]+\s*)(?="[a-zA-Z0-9_.-]+"\s*:)/g, '$1,$2');
+                    repairedText = repairedText.replace(/,\s*([\}\]])/g, '$1');
+                    const result = JSON.parse(repairedText);
+                    wasAutoRepaired = true;
+                    return result;
+                } catch (repairErr) { throw err; }
+            }
+        }
+
+        async function downloadDirectDvJson() {
+            const btn = document.getElementById('btnDebugDirect');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "⏳ Generating...";
+            btn.disabled = true;
+
+            try {
+                let enText = "";
+                const fileEn = document.getElementById('fileEn').files[0];
+                if (fileEn) {
+                    enText = await fileEn.text();
+                } else {
+                    const res = await fetch('https://raw.githubusercontent.com/MythicalLTD/FeatherPanel/main/frontendv2/public/locales/en.json');
+                    if (!res.ok) throw new Error(`GitHub returned status ${res.status}.`);
+                    enText = await res.text();
+                }
+
+                const rawEnObj = await safeJsonParse(enText);
+                const flatEnData = flattenObject(rawEnObj);
+
+                let idCounter = 1;
+                let flatExport = {};
+                for (const key in flatEnData) {
+                    if (typeof flatEnData[key] !== 'string' && typeof flatEnData[key] !== 'number') {
+                        flatExport[key] = flatEnData[key];
+                        continue;
+                    }
+                    flatExport[key] = `[${idCounter++}] ${flatEnData[key]}`;
+                }
+
+                const jsonString = JSON.stringify(unflattenObject(flatExport), null, 4);
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(jsonString);
+                const downloadAnchorNode = document.createElement('a');
+                downloadAnchorNode.setAttribute("href", dataStr);
+                downloadAnchorNode.setAttribute("download", `dv.json`);
+                document.body.appendChild(downloadAnchorNode);
+                downloadAnchorNode.click();
+                downloadAnchorNode.remove();
+            } catch (error) {
+                alert(`❌ ERROR: Failed to generate dv.json.\n\nReason: ${error.message}`);
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        async function initFilesLoad() {
+            const fileEn = document.getElementById('fileEn').files[0];
+            const filePl = document.getElementById('filePl').files[0];
+            const btnLoad = document.getElementById('btnLoad');
+            const alertBox = document.getElementById('repairAlert');
+            
+            alertBox.classList.add('hidden');
+            wasAutoRepaired = false;
+
+            localStorage.setItem(LS_PROVIDER, document.getElementById('apiProvider').value);
+            localStorage.setItem(LS_GCP, document.getElementById('gcpKey').value.trim());
+
+            btnLoad.innerText = "⏳ Loading...";
+            btnLoad.disabled = true;
+
+            try {
+                if (fileEn) { currentRawEnText = await fileEn.text(); } 
+                else {
+                    const res = await fetch('https://raw.githubusercontent.com/MythicalLTD/FeatherPanel/main/frontendv2/public/locales/en.json');
+                    if (!res.ok) throw new Error(`GitHub returned status ${res.status}.`);
+                    currentRawEnText = await res.text();
+                }
+
+                if (filePl) { currentRawPlText = await filePl.text(); } 
+                else { currentRawPlText = ""; }
+
+                await parseAndProceed();
+            } catch (error) {
+                alert(`❌ ERROR: Network failure.\n\nReason: ${error.message}`);
+                btnLoad.innerText = "Start Translating →";
+                btnLoad.disabled = false;
+            }
+        }
+
+        async function parseAndProceed() {
+            try { rawEnObj = await safeJsonParse(currentRawEnText); } 
+            catch(e) { showSyntaxModal("English Master File", currentRawEnText, e.message, "en"); return; }
+
+            if (currentRawPlText) {
+                try { rawPlObj = await safeJsonParse(currentRawPlText); } 
+                catch(e) { showSyntaxModal("Target Translation File", currentRawPlText, e.message, "pl"); return; }
+            } else { rawPlObj = {}; }
+
+            if (wasAutoRepaired) {
+                document.getElementById('repairAlert').classList.remove('hidden');
+            }
+
+            flatEnData = flattenObject(rawEnObj);
+            flatPlData = flattenObject(rawPlObj);
+            stateMeta = {}; 
+            
+            localStorage.setItem(LS_EN, JSON.stringify(flatEnData));
+            localStorage.setItem(LS_PL, JSON.stringify(flatPlData));
+            localStorage.setItem(LS_META, JSON.stringify(stateMeta));
+            localStorage.setItem(LS_LANG, document.getElementById('targetLang').value);
+
+            buildEditor();
+        }
+
+        function showSyntaxModal(fileName, fileText, errorMessage, fileType) {
+            document.getElementById('brokenFileName').innerText = fileName;
+            document.getElementById('brokenFileError').innerText = errorMessage;
+            document.getElementById('brokenFileEditor').value = fileText;
+            currentlyFixing = fileType;
+            document.getElementById('syntaxModal').classList.remove('hidden');
+        }
+
+        function closeSyntaxModal() {
+            document.getElementById('syntaxModal').classList.add('hidden');
+            const btnLoad = document.getElementById('btnLoad');
+            btnLoad.innerText = "Start Translating →";
+            btnLoad.disabled = false;
+        }
+
+        async function retryFromModal() {
+            const fixedText = document.getElementById('brokenFileEditor').value;
+            try {
+                await safeJsonParse(fixedText); 
+                if (currentlyFixing === 'en') currentRawEnText = fixedText;
+                else currentRawPlText = fixedText;
+                
+                document.getElementById('syntaxModal').classList.add('hidden');
+                await parseAndProceed(); 
+            } catch(e) {
+                 document.getElementById('brokenFileError').innerText = e.message;
+                 const editor = document.getElementById('brokenFileEditor');
+                 editor.style.borderColor = "#e11d48";
+                 setTimeout(() => editor.style.borderColor = "var(--border-color)", 800);
+            }
+        }
+
+        function updateStatsUI() {
+            let ok = 0; let missing = 0; let extra = 0; let same = 0; let added = 0; let totalActive = 0;
+
+            for (const key in mergedData) {
+                if (mergedData[key].status === 'extra') { extra++; continue; }
+                if (mergedData[key].skip) continue; 
+                totalActive++;
+                if (mergedData[key].isAdded) added++;
+
+                let plText = String(mergedData[key].pl).trim();
+                let enText = String(mergedData[key].en).trim();
+
+                if (plText === '') missing++;
+                else if (plText === enText) same++;
+                else ok++;
+            }
+
+            document.getElementById('statTotal').innerText = `📊 Total: ${totalActive}`;
+            document.getElementById('statOk').innerText = `✓ Correct: ${ok}`;
+            document.getElementById('statMissing').innerText = `⚠ Missing: ${missing}`;
+            document.getElementById('statAdded').innerText = `🆕 Added: ${added}`;
+            document.getElementById('statSame').innerText = `🔄 Same: ${same}`;
+            document.getElementById('statExtra').innerText = `🗑️ Removed: ${extra}`;
+
+            const provider = document.getElementById('apiProvider').value;
+            const charBadge = document.getElementById('statChars');
+            if (provider === 'google_cloud') {
+                charBadge.classList.remove('hidden');
+                charBadge.innerText = `🔤 Session Chars: ${sessionCharacters}`;
+            } else {
+                charBadge.classList.add('hidden');
+            }
+
+            return { ok, missing, same, added, extra, totalActive };
+        }
+
+        function buildEditor() {
+            mergedData = {};
+            const hasUploadedPlKeys = Object.keys(flatPlData).length > 0;
+            
+            let idCounter = 1; 
+
+            for (const key in flatEnData) {
+                const enText = flatEnData[key];
+                if (typeof enText !== 'string' && typeof enText !== 'number') {
+                    mergedData[key] = { en: enText, pl: flatPlData[key] !== undefined ? flatPlData[key] : enText, status: 'ok', isAdded: false, skip: true, debugId: null };
+                    continue; 
+                }
+
+                let isNewFromUpdate = hasUploadedPlKeys && !(key in flatPlData);
+                let plText = flatPlData[key] !== undefined ? flatPlData[key] : '';
+                let status = (plText === '') ? 'missing' : 'ok';
+                mergedData[key] = { en: enText, pl: plText, status: status, isAdded: isNewFromUpdate, skip: false, debugId: idCounter++ };
+            }
+
+            for (const plKey in flatPlData) {
+                if (!(plKey in flatEnData)) {
+                    mergedData[plKey] = { en: 'N/A (This key is not in en.json)', pl: flatPlData[plKey], status: 'extra', isAdded: false, skip: true, debugId: null };
+                }
+            }
+
+            updateStatsUI();
+
+            document.getElementById('setupSection').classList.add('hidden');
+            document.getElementById('editorSection').classList.remove('hidden');
+            document.getElementById('navDownloadBtn').classList.remove('hidden');
+            document.getElementById('navDvBtn').classList.remove('hidden'); 
+            
+            let savedFilter = localStorage.getItem(LS_FILTER) || 'all';
+            filterTable(savedFilter, true);
+            
+            if (document.getElementById('hoverToggle').checked) toggleHoverMode();
+            if (document.getElementById('autoTranslateToggle').checked) isAutoTranslatingAll = true;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function filterTable(status, keepPage = false) {
+            currentFilter = status;
+            localStorage.setItem(LS_FILTER, status); 
+            
+            const btns = ['filterAll', 'filterMissing', 'filterAdded', 'filterSame', 'filterExtra'];
+            btns.forEach(id => {
+                const el = document.getElementById(id);
+                if(el) el.classList.remove('active');
+            });
+            
+            if(status === 'all') document.getElementById('filterAll').classList.add('active');
+            if(status === 'missing') document.getElementById('filterMissing').classList.add('active');
+            if(status === 'added') document.getElementById('filterAdded').classList.add('active');
+            if(status === 'same') document.getElementById('filterSame').classList.add('active');
+            if(status === 'extra') document.getElementById('filterExtra').classList.add('active');
+            
+            const searchQuery = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase() : '';
+
+            activeKeys = Object.keys(mergedData).filter(key => {
+                const data = mergedData[key];
+                
+                let tabMatch = false;
+                if (status === 'all') tabMatch = data.status !== 'extra' && !data.skip;
+                else if (status === 'extra') tabMatch = data.status === 'extra';
+                else if (status === 'added') tabMatch = data.isAdded && !data.skip;
+                else if (status === 'same') tabMatch = String(data.pl).trim() !== '' && String(data.pl).trim() === String(data.en).trim() && data.status !== 'extra' && !data.skip;
+                else tabMatch = data.status === status && !data.skip;
+                
+                if (!tabMatch) return false;
+                
+                if (searchQuery) {
+                    const searchId = searchQuery.replace('#', '');
+                    const matchesId = data.debugId && String(data.debugId) === searchId;
+                    const matchesEn = String(data.en).toLowerCase().includes(searchQuery);
+                    const matchesPl = String(data.pl).toLowerCase().includes(searchQuery);
+                    const matchesKey = key.toLowerCase().includes(searchQuery);
+                    return matchesId || matchesEn || matchesPl || matchesKey;
+                }
+
+                return true;
+            });
+
+            if (!keepPage) currentPage = 1; 
+            renderPage(true);
+        }
+
+        function changePage(direction) {
+            currentPage += direction;
+            renderPage(true); 
+        }
+
+        function renderPage(scrollToTop = false) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = ''; 
+
+            const totalPages = Math.ceil(activeKeys.length / itemsPerPage) || 1;
+            if(currentPage > totalPages) currentPage = totalPages;
+            if(currentPage < 1) currentPage = 1;
+
+            localStorage.setItem(LS_PAGE, currentPage);
+
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageKeys = activeKeys.slice(start, end);
+
+            let firstInteractiveFound = false;
+
+            pageKeys.forEach((key, index) => {
+                const data = mergedData[key];
+                const delayMs = index * 10;
+                
+                let isFirstInteractive = false;
+                let meta = stateMeta[key] || '';
+                
+                let isHoverable = false;
+                if (data.status !== 'extra') {
+                    if (data.status === 'missing' || String(data.en).trim() === String(data.pl).trim()) {
+                        isHoverable = true;
+                    } else if (meta !== 'ai' && meta !== 'verified') {
+                        isHoverable = false; 
+                    }
+                }
+
+                if (isHoverable && !firstInteractiveFound) {
+                    isFirstInteractive = true;
+                    firstInteractiveFound = true;
+                }
+
+                createRowHtml(key, data.en, data.pl, data.status, data.isAdded, tbody, delayMs, isFirstInteractive, isHoverable, data.debugId);
+            });
+
+            document.querySelectorAll('.total-pages-label').forEach(el => el.innerText = totalPages);
+            document.querySelectorAll('.total-items-label').forEach(el => el.innerText = `(${activeKeys.length} items)`);
+            
+            document.querySelectorAll('.quick-page-jump').forEach(input => {
+                input.max = totalPages;
+                if (document.activeElement !== input) input.value = currentPage;
+            });
+
+            const isFirst = (currentPage === 1);
+            const isLast = (currentPage === totalPages);
+            document.getElementById('btnPrevTop').disabled = isFirst;
+            document.getElementById('btnPrevBottom').disabled = isFirst;
+            document.getElementById('btnNextTop').disabled = isLast;
+            document.getElementById('btnNextBottom').disabled = isLast;
+
+            if (scrollToTop) {
+                const panel = document.getElementById('editorSection');
+                if(panel) window.scrollTo({ top: panel.offsetTop - 50, behavior: 'smooth' });
+            }
+
+            if (isAutoTranslatingAll && !isProcessingQueue) {
+                processAutoTranslate();
+            }
+        }
+
+        function createRowHtml(key, enText, plText, status, isAdded, container, delay, isFirstInteractive, isHoverable, debugId) {
+            const safeKeyId = key.replace(/[^a-zA-Z0-9]/g, '-');
+            const visualKey = key.replace(/___APP___/g, ' ➔ ');
+            const newTag = isAdded ? `<span style="background:#e0e7ff; color:#4338ca; padding:2px 6px; border-radius:4px; font-size:0.7rem; margin-left:8px; vertical-align:middle; font-weight: 700; border: 1px solid #c7d2fe;">NEW</span>` : '';
+            const debugBadge = debugId ? `<span style="color:#94a3b8; font-weight:700; font-size:0.75rem; margin-right:6px;" title="Debug ID">#${debugId}</span>` : '';
+            
+            const row = document.createElement('div');
+            
+            let classes = `translation-row status-${status}`;
+            if (isHoverable) classes += ' is-hoverable';
+            if (isFirstInteractive) classes += ' is-first';
+            row.className = classes;
+            
+            row.dataset.status = status;
+            row.style.animation = `waterfallFadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) ${delay}ms forwards`;
+
+            const isExtra = status === 'extra';
+            const readonlyAttr = isExtra ? 'readonly' : '';
+            const btnDisabled = isExtra ? 'disabled' : '';
+
+            let meta = stateMeta[key] || '';
+            let badgeHtml = `<span class="badge auto-tag" id="badge_${safeKeyId}"></span>`;
+            let actionHtml = `<button id="btn_${safeKeyId}" class="btn btn-outline" style="width: 100%;" onclick="translateAI('${key}', '${safeKeyId}', this)" ${btnDisabled}>Translate</button>`;
+
+            if (meta === 'ai') {
+                badgeHtml = `<span class="badge tag-ai auto-tag" id="badge_${safeKeyId}" style="display:inline-flex;">✨ AI Translated</span>`;
+                actionHtml = `<button id="btn_${safeKeyId}" class="btn btn-verify" style="width: 100%;" onclick="verifyTranslation('${key}', '${safeKeyId}')">✓ Verify</button>`;
+            } else if (meta === 'verified') {
+                badgeHtml = `<span class="badge tag-verified auto-tag" id="badge_${safeKeyId}" style="display:inline-flex;">✅ Verified</span>`;
+                actionHtml = `<button id="btn_${safeKeyId}" class="btn btn-outline" style="width: 100%;" onclick="translateAI('${key}', '${safeKeyId}', this)" ${btnDisabled}>Translate</button>`;
+            }
+
+            row.innerHTML = `
+                <div class="source-col" onmouseenter="handleHover('${key}', '${safeKeyId}')">
+                    <div class="source-key">${visualKey}${newTag}</div>
+                    <div class="source-text">${debugBadge}${enText}</div>
+                </div>
+                <div class="target-col">
+                    ${badgeHtml}
+                    <textarea id="pl_${safeKeyId}" oninput="updateMemory('${key}', this.value)" placeholder="${isExtra ? 'Will be deleted on save' : 'Type translation...'}" ${readonlyAttr}>${plText}</textarea>
+                </div>
+                <div class="action-col" id="actionWrap_${safeKeyId}">
+                    ${actionHtml}
+                </div>
+            `;
+            container.appendChild(row);
+        }
+
+        function updateMemory(key, val) {
+            if (mergedData[key].status === 'extra') return;
+            
+            mergedData[key].pl = val;
+            const safeKeyId = key.replace(/[^a-zA-Z0-9]/g, '-');
+            const row = document.getElementById(`pl_${safeKeyId}`).closest('.translation-row');
+            
+            const isValEmpty = val.trim() === '';
+            const isValSame = val.trim() === String(mergedData[key].en).trim() && !isValEmpty;
+
+            if (isValEmpty) {
+                mergedData[key].status = 'missing';
+                row.dataset.status = 'missing';
+                row.classList.add('is-hoverable'); 
+                
+                delete stateMeta[key];
+                localStorage.setItem(LS_META, JSON.stringify(stateMeta));
+                
+                const badge = document.getElementById(`badge_${safeKeyId}`);
+                if (badge) badge.style.display = 'none';
+                
+                const actionWrap = document.getElementById(`actionWrap_${safeKeyId}`);
+                if(actionWrap) actionWrap.innerHTML = `<button id="btn_${safeKeyId}" class="btn btn-outline" style="width: 100%;" onclick="translateAI('${key}', '${safeKeyId}', this)">Translate</button>`;
+                
+            } else {
+                mergedData[key].status = 'ok';
+                row.dataset.status = 'ok';
+                
+                if (isValSame) row.classList.add('is-hoverable');
+                else row.classList.remove('is-hoverable', 'is-first'); 
+                
+                stateMeta[key] = 'verified';
+                localStorage.setItem(LS_META, JSON.stringify(stateMeta));
+                
+                const badge = document.getElementById(`badge_${safeKeyId}`);
+                if (badge) {
+                    badge.className = 'badge tag-verified auto-tag';
+                    badge.innerText = '✅ Verified';
+                    badge.style.display = 'inline-flex';
+                }
+
+                const actionWrap = document.getElementById(`actionWrap_${safeKeyId}`);
+                if(actionWrap) {
+                    actionWrap.innerHTML = `<button id="btn_${safeKeyId}" class="btn btn-outline" style="width: 100%;" onclick="translateAI('${key}', '${safeKeyId}', this)">Translate</button>`;
+                }
+            }
+
+            updateStatsUI();
+            flatPlData[key] = val;
+            localStorage.setItem(LS_PL, JSON.stringify(flatPlData));
+        }
+
+        function verifyTranslation(key, safeKeyId) {
+            stateMeta[key] = 'verified';
+            localStorage.setItem(LS_META, JSON.stringify(stateMeta));
+            
+            const badge = document.getElementById(`badge_${safeKeyId}`);
+            if (badge) {
+                badge.className = 'badge tag-verified auto-tag';
+                badge.innerText = '✅ Verified';
+            }
+
+            const actionWrap = document.getElementById(`actionWrap_${safeKeyId}`);
+            if(actionWrap) {
+                actionWrap.innerHTML = `<button id="btn_${safeKeyId}" class="btn btn-outline" style="width: 100%;" onclick="translateAI('${key}', '${safeKeyId}', this)">Translate</button>`;
+            }
+            
+            const row = document.getElementById(`pl_${safeKeyId}`).closest('.translation-row');
+            row.classList.remove('is-hoverable', 'is-first'); 
+        }
+
+        function handleHover(key, safeKeyId) {
+            if (mergedData[key].status === 'extra') return;
+            const hoverEnabled = document.getElementById('hoverToggle').checked;
+            if (!hoverEnabled || isAutoTranslatingAll) return;
+
+            const textarea = document.getElementById(`pl_${safeKeyId}`);
+            const val = String(textarea.value).trim();
+            const enVal = String(mergedData[key].en).trim();
+
+            const isSame = (val === enVal && val !== '');
+            const isMissing = (val === '');
+
+            if (!isMissing && !isSame) {
+                if (stateMeta[key] === 'verified' || stateMeta[key] === 'ai') return;
+            }
+
+            if (isMissing || isSame) {
+                const isInQueue = hoverQueue.some(item => item.key === key);
+                if (!isInQueue) {
+                    hoverQueue.push({ key, safeKeyId });
+                    processHoverQueue();
+                }
+            }
+        }
+
+        async function processHoverQueue() {
+            if (isHoverTranslating || hoverQueue.length === 0) return;
+            isHoverTranslating = true;
+
+            const item = hoverQueue.shift();
+            const btn = document.getElementById(`btn_${item.safeKeyId}`);
+            
+            if (btn && !btn.disabled && btn.innerText !== "⏳...") {
+                await translateAI(item.key, item.safeKeyId, btn, true); 
+            }
+
+            const provider = document.getElementById('apiProvider').value;
+            const delay = (provider === 'google_free') ? 1500 : 50;
+
+            setTimeout(() => {
+                isHoverTranslating = false;
+                processHoverQueue();
+            }, delay);
+        }
+        
+        async function triggerAutoTranslate() {
+            const isChecked = document.getElementById('autoTranslateToggle').checked;
+            isAutoTranslatingAll = isChecked;
+            localStorage.setItem(LS_AUTOTRANS, isChecked); 
+            
+            if (isChecked && !isProcessingQueue) {
+                processAutoTranslate();
+            }
+        }
+
+        async function processAutoTranslate() {
+            if (isProcessingQueue) return;
+            isProcessingQueue = true;
+
+            const provider = document.getElementById('apiProvider').value;
+            
+            while (isAutoTranslatingAll) {
+                const autoSkip = document.getElementById('autoSkipToggle').checked;
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const pageKeys = activeKeys.slice(start, end);
+
+                let queue = [];
+                for (let key of pageKeys) {
+                    const data = mergedData[key];
+                    const meta = stateMeta[key];
+
+                    if (data.skip || meta === 'verified' || meta === 'ai') continue;
+                    
+                    let shouldAdd = false;
+                    if (currentFilter === 'all' || currentFilter === 'missing') {
+                        if (data.status === 'missing') shouldAdd = true;
+                    } else if (currentFilter === 'same') {
+                        if (String(data.pl).trim() === String(data.en).trim()) shouldAdd = true;
+                    } else if (currentFilter === 'added') {
+                        if (data.isAdded && data.status === 'missing') shouldAdd = true;
+                    }
+                    
+                    if (shouldAdd) queue.push(key);
+                }
+                
+                if (queue.length > 0) {
+                    const delayTime = (provider === 'google_free') ? 1600 : 100;
+                    for (let key of queue) {
+                        if (!isAutoTranslatingAll) break; 
+                        const safeKeyId = key.replace(/[^a-zA-Z0-9]/g, '-');
+                        let btnEl = document.getElementById(`btn_${safeKeyId}`); 
+                        
+                        await translateAI(key, safeKeyId, btnEl, true); 
+                        await new Promise(r => setTimeout(r, delayTime)); 
+                    }
+                }
+                
+                if (!isAutoTranslatingAll) break;
+
+                const totalPages = Math.ceil(activeKeys.length / itemsPerPage) || 1;
+                
+                if (autoSkip && currentPage < totalPages) {
+                    currentPage++; 
+                    renderPage(false); 
+                    await new Promise(r => setTimeout(r, 1000)); 
+                } else {
+                    // Koniec przechodzenia przez strony, przerwij pętlę BEZ odznaczania przełącznika
+                    break;
+                }
+            }
+            
+            isProcessingQueue = false;
+        }
+
+        async function translateAI(key, safeKeyId, btnElement, forceBypass = false) {
+            if (mergedData[key].status === 'extra') return;
+            const provider = document.getElementById('apiProvider').value;
+            
+            if (!forceBypass && provider === 'google_free') {
+                if (isGlobalCooldown) return; 
+                isGlobalCooldown = true; 
+            }
+            
+            if (btnElement) {
+                btnElement.innerText = "⏳...";
+                btnElement.disabled = true;
+            }
+
+            const enText = mergedData[key].en;
+            const targetLang = document.getElementById('targetLang').value.trim();
+            const textarea = document.getElementById(`pl_${safeKeyId}`);
+            const badge = document.getElementById(`badge_${safeKeyId}`);
+            const row = textarea ? textarea.closest('.translation-row') : null;
+            
+            if(textarea) textarea.style.opacity = '0.5';
+
+            const variables = [];
+            let textToTranslate = enText.replace(/\{.*?\}/g, (match) => { variables.push(match); return `__VAR${variables.length - 1}__`; });
+            let translation = "";
+
+            try {
+                if (provider === 'google_free') {
+                    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${encodeURIComponent(targetLang)}&dt=t&q=${encodeURIComponent(textToTranslate)}`;
+                    const response = await fetch(url);
+                    if (!response.ok) throw new Error("Google Rate Limit");
+                    const result = await response.json();
+                    for (let i = 0; i < result[0].length; i++) { translation += result[0][i][0]; }
+                } else if (provider === 'google_cloud') {
+                    const apiKey = document.getElementById('gcpKey').value.trim();
+                    if (!apiKey) throw new Error("GCP API Key missing");
+                    
+                    sessionCharacters += textToTranslate.length;
+                    updateStatsUI();
+
+                    const response = await fetch(`https://translation.googleapis.com/language/translate/v2?key=${apiKey}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ q: textToTranslate, target: targetLang, source: 'en', format: 'text' })
+                    });
+                    
+                    if(!response.ok) {
+                        const err = await response.json();
+                        throw new Error(err.error.message || "GCP Error");
+                    }
+                    const result = await response.json();
+                    translation = result.data.translations[0].translatedText;
+                }
+
+                variables.forEach((variable, index) => {
+                    const regex = new RegExp(`__VAR${index}__`, 'gi'); translation = translation.replace(regex, variable);
+                    const regexSpaced = new RegExp(`__ VAR ${index} __`, 'gi'); translation = translation.replace(regexSpaced, variable);
+                    const regexSpaced2 = new RegExp(`__ VAR${index} __`, 'gi'); translation = translation.replace(regexSpaced2, variable);
+                });
+                
+                mergedData[key].pl = translation;
+                mergedData[key].status = 'ok';
+                flatPlData[key] = translation;
+                localStorage.setItem(LS_PL, JSON.stringify(flatPlData));
+                
+                stateMeta[key] = 'ai';
+                localStorage.setItem(LS_META, JSON.stringify(stateMeta));
+                
+                if (textarea) {
+                    textarea.value = translation;
+                    textarea.style.opacity = '1';
+                    row.dataset.status = 'ok';
+                    row.classList.remove('is-hoverable', 'is-first'); 
+                }
+                
+                if (badge) {
+                    badge.className = 'badge tag-ai auto-tag';
+                    badge.innerText = '✨ AI Translated';
+                    badge.style.display = 'inline-flex';
+                }
+
+                if (btnElement) {
+                    const actionWrap = document.getElementById(`actionWrap_${safeKeyId}`);
+                    if(actionWrap) {
+                        actionWrap.innerHTML = `<button id="btn_${safeKeyId}" class="btn btn-verify" style="width: 100%;" onclick="verifyTranslation('${key}', '${safeKeyId}')">✓ Verify</button>`;
+                    }
+                }
+                
+                updateStatsUI();
+                
+            } catch (e) { 
+                console.error("Translation API Error:", e); 
+                if(textarea) textarea.style.opacity = '1';
+                if (btnElement) {
+                    btnElement.innerText = "Translate";
+                    btnElement.disabled = false;
+                }
+                if (isAutoTranslatingAll) {
+                    document.getElementById('autoTranslateToggle').checked = false;
+                    isAutoTranslatingAll = false;
+                    localStorage.setItem(LS_AUTOTRANS, false);
+                    alert("API Error! Auto-Translate stopped.\n\nReason: " + e.message);
+                }
+            } finally {
+                if (!forceBypass && provider === 'google_free') {
+                    setTimeout(() => { isGlobalCooldown = false; }, 1500);
+                }
+            }
+        }
+
+        function prepareFinalJson() {
+            let flatExport = {};
+            for (const key in mergedData) {
+                if (mergedData[key].status === 'extra') continue;
+                if (mergedData[key].skip) { flatExport[key] = mergedData[key].en; } 
+                else {
+                    let plText = mergedData[key].pl;
+                    if (!plText || String(plText).trim() === '') plText = mergedData[key].en;
+                    flatExport[key] = plText;
+                }
+            }
+            return JSON.stringify(unflattenObject(flatExport), null, 4);
+        }
+
+        function exportJson() {
+            const stats = updateStatsUI();
+            const completionRate = stats.totalActive > 0 ? (stats.ok / stats.totalActive) * 100 : 0;
+            const targetLang = document.getElementById('targetLang').value.trim() || 'translated';
+            const jsonString = prepareFinalJson();
+
+            alert(`DOWNLOAD SUMMARY:\n\n` +
+                  `📊 Total Active Keys: ${stats.totalActive}\n` +
+                  `✓ Correct: ${stats.ok} (${completionRate.toFixed(1)}%)\n` +
+                  `⚠ Missing: ${stats.missing}\n` +
+                  `🆕 New Lines: ${stats.added}\n` +
+                  `🔄 Same: ${stats.same}\n` +
+                  `🗑️ Cleaned/Removed: ${stats.extra} extra keys`);
+
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(jsonString);
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", `${targetLang}.json`);
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        }
+
+        function exportDvJson() {
+            let flatExport = {};
+            for (const key in mergedData) {
+                if (mergedData[key].status === 'extra' || mergedData[key].skip) continue;
+                flatExport[key] = `[${mergedData[key].debugId}] ${mergedData[key].en}`;
+            }
+            
+            const jsonString = JSON.stringify(unflattenObject(flatExport), null, 4);
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(jsonString);
+            const downloadAnchorNode = document.createElement('a');
+            downloadAnchorNode.setAttribute("href", dataStr);
+            downloadAnchorNode.setAttribute("download", `dv.json`);
+            document.body.appendChild(downloadAnchorNode);
+            downloadAnchorNode.click();
+            downloadAnchorNode.remove();
+        }
+    </script>
+</body>
+</html>
